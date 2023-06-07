@@ -17,7 +17,7 @@ import { fakeBackendProvider } from './core/interceptor/fake-backend';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+import { StaffService } from './admin/staff/staff.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
@@ -29,6 +29,7 @@ import {
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { DeleteComponent } from './country/delete/delete.component';
+import { AgentService } from './admin/agent/all-agent/agent.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -67,7 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
+    fakeBackendProvider,StaffService,AgentService
   ],
   bootstrap: [AppComponent],
 })

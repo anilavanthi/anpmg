@@ -98,6 +98,30 @@
         "MEMBERSHIPS": "Membership"
       }
     },
+    "SUPPORT": {
+      "TEXT": "Customer Support",
+      "LIST": {
+        "SUPPORT": "Customer Support"
+      }
+    },
+    "INVOICE": {
+      "TEXT": "Invoice",
+      "LIST": {
+        "INVOICE": "Invoice"
+      }
+    },
+    "REPORTS": {
+      "TEXT": "Reports",
+      "LIST": {
+        "REPORTS": "Reports"
+      }
+    },
+    "ACCESSSETTINGS": {
+      "TEXT": "Role Settings",
+      "LIST": {
+        "ACCESSSETTINGS": "Role Settings"
+      }
+    },
     "STAFF": {
       "TEXT": "Staff",
       "LIST": {
@@ -117,7 +141,11 @@
         "ALL-CUSTOMERS": "All Customers",
         "ADD-CUSTOMER": "Add Customer",
         "EDIT-CUSTOMER": "Edit Customer",
-        "ABOUT-CUSTOMER": "About Customer"
+        "ABOUT-CUSTOMER": "About Customer",
+        "ACTIVE-CUSTOMERUSERS" : "Active Customers",
+        "BANNED-CUSTOMERS" : "Banned Customers",
+        "EMAIL-CUSTOMER-UNVERIFIED" : "Email Unverified Customers",
+        "MOBILE-CUSTOMER-UNVERIFIED" : "Mobile Unverified Customers"
       }
     },
     "AGENT": {

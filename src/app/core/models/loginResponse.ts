@@ -18,4 +18,5 @@ export class LoginUserDetails {
   firstName!: string;
   lastName!: string;
   role!: Role;
+  full_name!:string;
 }

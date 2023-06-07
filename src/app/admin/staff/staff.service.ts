@@ -58,6 +58,10 @@ export class StaffService extends UnsubscribeOnDestroyAdapter {
     return this.httpClient.get<SingleStaffResponse>(environment.apiUrl+"/masters/staff/"  + id)
    }
 
+   getStaffUserData(id:number):Observable<SingleStaffResponse> {
+    return this.httpClient.get<SingleStaffResponse>(environment.apiUrl+"/masters/staffUser/"  + id)
+   }
+
 
   addStaff(staff: Staff,photo:File): void {
     this.dialogData = staff;

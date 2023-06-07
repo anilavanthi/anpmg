@@ -14,6 +14,10 @@ import { ROUTES } from './sidebar-items';
 import { Role } from 'src/app/core/models/role';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { RouteInfo } from './sidebar.metadata';
+import { StaffService } from 'src/app/admin/staff/staff.service';
+import { Staff,StaffResponse,User } from 'src/app/admin/staff/staff.model';
+import { AgentService } from 'src/app/admin/agent/all-agent/agent.service';
+import { Agent } from 'src/app/admin/agent/all-agent/agent.model';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -21,6 +25,9 @@ import { RouteInfo } from './sidebar.metadata';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public sidebarItems!: RouteInfo[];
+  public staff!: Staff | null | undefined;
+  public agent!: Agent | null | undefined;
+  public userRole1?:string;
   public innerHeight?: number;
   public bodyTag!: HTMLElement;
   listMaxHeight?: string;
@@ -36,7 +43,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private staffService : StaffService,
+    private agentService : AgentService
   ) {
     this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
@@ -72,11 +81,26 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
-      this.userFullName =
-        this.authService.currentUserValue.firstName +
-        ' ' +
-        this.authService.currentUserValue.lastName;
+      const userId = this.authService.currentUserValue.id;
+      this.userRole1 = this.authService.currentUserValue.role;
+      // this.userFullName =
+      //   this.authService.currentUserValue.firstName +
+      //   ' ' +
+      //   this.authService.currentUserValue.lastName;
+      this.userFullName = this.authService.currentUserValue.full_name;
       this.userImg = this.authService.currentUserValue.img;
+      if(userRole === Role.Student){
+        const id: number = Number(userId);
+      this.staffService.getStaffUserData(id).subscribe((response)=>{
+        this.staff = response.data;
+      });
+       }
+       else if(userRole === Role.Teacher){
+        const id: number = Number(userId);
+      this.agentService.getAgentUserData(id).subscribe((response)=>{
+        this.agent = response.data;
+      });
+       } 
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
@@ -84,9 +108,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
       if (userRole === Role.Admin) {
         this.userType = Role.Admin;
       } else if (userRole === Role.Teacher) {
-        this.userType = Role.Teacher;
+        this.userType = Role.Agent;
       } else if (userRole === Role.Student) {
-        this.userType = Role.Student;
+        this.userType = Role.Staff;
       } else {
         this.userType = Role.Admin;
       }

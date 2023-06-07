@@ -7,7 +7,6 @@ import { ActiveAgentComponent } from './active-agent/active-agent.component';
 import { BannedAgentsComponent } from './banned-agents/banned-agents.component';
 import { EmailAgentUnverifiedComponent } from './email-agent-unverified/email-agent-unverified.component';
 import { MobileAgentUnverifiedComponent } from './mobile-agent-unverified/mobile-agent-unverified.component';
-
 const routes: Routes = [
   {
     path: 'all-agent',
@@ -36,7 +35,7 @@ const routes: Routes = [
   {
     path: 'mobile-agent-unverified',
     component: MobileAgentUnverifiedComponent
-  }
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

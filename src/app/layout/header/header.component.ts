@@ -15,7 +15,10 @@ import { Role } from 'src/app/core/models/role';
 import { LanguageService } from 'src/app/core/service/language.service';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { InConfiguration } from 'src/app/core/models/config.interface';
-
+import { Staff,StaffResponse,User } from 'src/app/admin/staff/staff.model';
+import { StaffService } from 'src/app/admin/staff/staff.service';
+import { AgentService } from 'src/app/admin/agent/all-agent/agent.service';
+import { Agent,AgentResponse,SingleAgentResponse } from 'src/app/admin/agent/all-agent/agent.model';
 interface Notifications {
   message: string;
   time: string;
@@ -34,8 +37,9 @@ export class HeaderComponent
   implements OnInit, AfterViewInit
 {
   public config!: InConfiguration;
-  userImg?: string;
+  userImg?: string|null|undefined;
   homePage?: string;
+  public userRole1?:string;
   isNavbarCollapsed = true;
   flagvalue: string | string[] | undefined;
   countryName: string | string[] = [];
@@ -44,7 +48,8 @@ export class HeaderComponent
   isOpenSidebar?: boolean;
   docElement: HTMLElement | undefined;
   isFullScreen = false;
-
+  public staff!: Staff | null | undefined;
+  public agent!: Agent | null | undefined;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -53,7 +58,9 @@ export class HeaderComponent
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private staffService : StaffService,
+    private agentService : AgentService
   ) {
     super();
   }
@@ -115,10 +122,24 @@ export class HeaderComponent
   ];
   ngOnInit() {
     this.config = this.configService.configData;
-
+    const userId = this.authService.currentUserValue.id;
     const userRole = this.authService.currentUserValue.role;
+    this.userRole1 = this.authService.currentUserValue.role;
     this.userImg = this.authService.currentUserValue.img;
+    if(userRole === Role.Student){
+      const id: number = Number(userId);
+    this.staffService.getStaffUserData(id).subscribe((response)=>{
+      this.staff = response.data;
+    });
+     }
+     else if(userRole === Role.Teacher){
+      const id: number = Number(userId);
+    this.agentService.getAgentUserData(id).subscribe((response)=>{
+      this.agent = response.data;
+    });
+     } 
 
+    
     if (userRole === Role.Admin) {
       this.homePage = 'admin/dashboard/main';
     } else if (userRole === Role.Teacher) {

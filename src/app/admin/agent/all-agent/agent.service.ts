@@ -44,6 +44,10 @@ export class AgentService extends UnsubscribeOnDestroyAdapter {
     return this.httpClient.get<SingleAgentResponse>(environment.apiUrl+"/masters/agent/"  + id)
    }
 
+   getAgentUserData(id:number):Observable<SingleAgentResponse> {
+    return this.httpClient.get<SingleAgentResponse>(environment.apiUrl+"/masters/agentUser/"  + id)
+   }
+
 
   addAgent(agent: Agent,photo:File): void {
     this.dialogData = agent;

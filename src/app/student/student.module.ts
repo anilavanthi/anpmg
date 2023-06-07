@@ -39,6 +39,7 @@ import { HomeworkService } from './homework/homework.service';
 import { LeaveRequestService as stdLeaveReqService } from './leave-request/leave-request.service';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
+import { AgentModule } from '../admin/agent/agent.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SharedModule } from '../shared/shared.module';
     SettingsComponent,
   ],
   imports: [
+    AgentModule,
     CommonModule,
     StudentRoutingModule,
     NgChartsModule,

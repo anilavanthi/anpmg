@@ -12,8 +12,12 @@ import {
   ApexPlotOptions,
   ApexResponsive,
   ApexGrid,
+  ApexTitleSubtitle,
+  ApexMarkers,
   ApexLegend,
+  ApexTheme,
   ApexFill,
+  ApexNonAxisChartSeries
 } from 'ng-apexcharts';
 
 export type barChartOptions = {
@@ -41,6 +45,26 @@ export type areaChartOptions = {
   colors: string[];
 };
 
+export type chartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  stroke: ApexStroke;
+  tooltip: ApexTooltip;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  fill: ApexFill;
+  legend: ApexLegend;
+  markers: ApexMarkers;
+  grid: ApexGrid;
+  title: ApexTitleSubtitle;
+  colors: string[];
+  responsive: ApexResponsive[];
+  labels: string[];
+  theme: ApexTheme;
+  series2: ApexNonAxisChartSeries;
+};
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -50,11 +74,12 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   public barChartOptions!: Partial<barChartOptions>;
   public areaChartOptions!: Partial<areaChartOptions>;
+  public polarChartOptions!: Partial<chartOptions>;
 
   breadscrums = [
     {
       title: 'Dashboard',
-      items: ['Student'],
+      items: ['Staff'],
       active: 'Dashboard',
     },
   ];

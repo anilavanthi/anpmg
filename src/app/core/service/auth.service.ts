@@ -38,7 +38,8 @@ export class AuthService {
         map((response) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           response.user_details.token = response.user_details.tokens.access;
-          response.user_details.role = Role.Admin;
+         // response.user_details.role = Role.Admin;
+         response.user_details.role = response.user_details.role;
           localStorage.setItem('currentUser', JSON.stringify(response?.user_details));
           // console.log(user.tokens.access);
           this.currentUserSubject.next(response?.user_details);

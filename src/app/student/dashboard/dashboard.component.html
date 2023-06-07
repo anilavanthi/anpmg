@@ -7,6 +7,370 @@
     </div>
     <!-- Widgets -->
     <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img1.png" alt="">
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">New Users</h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">758</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex"><i class="material-icons col-green psr-2">trending_up</i> 10% Higher Then Last Month
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img2.png" alt="">
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">Total Users</h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">125</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex"><i class="material-icons col-orange psr-2">trending_down</i> 07% Less Then Last
+              Year
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img3.png" alt="">
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">Membership Plans</h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">8</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex"><i class="material-icons col-green psr-2">trending_up</i> 12% Higher Then Last Month
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img4.png" alt="">
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">Total Collection</h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">$48,697</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex"><i class="material-icons col-orange psr-2">trending_down</i> 22% Less Then Last
+              Month
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>New Agents</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Agent Name</th>
+                    <th>Assigned Branch</th>
+                    <th>Date</th>
+                    <th>Sport Name</th>
+                    <th>Actions </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user1.jpg" alt="">
+                    </td>
+                    <td>John Doe</td>
+                    <td><a href="mailto:test@gmail.com"> Jacob Ryan </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-red">Cricket</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user2.jpg" alt="">
+                    </td>
+                    <td>Sarah Smith</td>
+                    <td><a href="mailto:test@gmail.com"> Rajesh </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-green">Boxing</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user3.jpg" alt="">
+                    </td>
+                    <td>Airi Satou</td>
+                    <td><a href="mailto:test@gmail.com"> Jay Soni </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-purple">Tennis</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user4.jpg" alt="">
+                    </td>
+                    <td>Angelica Ramos</td>
+                    <td><a href="mailto:test@gmail.com"> John Deo </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-purple">Hockey</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user5.jpg" alt="">
+                    </td>
+                    <td>Ashton Cox</td>
+                    <td><a href="mailto:test@gmail.com"> Megha Trivedi </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-orange">Yoga</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user8.jpg" alt="">
+                    </td>
+                    <td>Cara Stevens</td>
+                    <td><a href="mailto:test@gmail.com"> Sarah Smith </a></td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge col-cyan">Gymnastics</div>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Staff List List</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Staff Name</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user5.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com"> Jay Soni
+                        </a></div>
+                      <div class="text-job font-11">(MA,B.Ed)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-green">Available</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user6.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com"> Sarah Smith
+                        </a></div>
+                      <div class="text-job font-11">(B.com,PHD)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-red">Absend</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user3.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com">Megha Trivedi
+                        </a></div>
+                      <div class="text-job font-11">(M.Ed.)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-green">Available</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user2.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com"> John Deo
+                        </a></div>
+                      <div class="text-job font-11">(B.Sc.,M.Sc.)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-green">Available</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user1.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com">Jacob Ryan
+                        </a></div>
+                      <div class="text-job font-11">(CP.Ed.)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-red">Absend</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user8.jpg" alt="">
+                    </td>
+                    <td>
+                      <div class="media-title"><a href="mailto:test@gmail.com">Jay Soni
+                        </a></div>
+                      <div class="text-job font-11">(MA, B.Ed.)</div>
+                    </td>
+                    <td>
+                      <div class="badge badge-solid-green">Available</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
         <div class="card">
           <div class="body">
@@ -56,9 +420,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- #END# Widgets -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
@@ -499,6 +863,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
