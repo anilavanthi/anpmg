@@ -85,7 +85,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Admin'],
+    role: ['Admin','Branch'],
     submenu: [
       {
         path: '/admin/staff/all-staff',
@@ -194,7 +194,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Admin','Student','Teacher'],
+    role: ['Admin','Student','Teacher','Branch'],
     submenu: [
       {
         path: '/admin/customer/createcustomer',
