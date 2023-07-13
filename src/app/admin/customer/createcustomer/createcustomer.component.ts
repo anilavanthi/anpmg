@@ -8,6 +8,7 @@ import { Customer } from './customer.model';
 import { DataSource } from '@angular/cdk/collections';
 import {AddFormComponent } from './add/add-form/add-form.component';
 import { DeleteComponent } from './add/delete/delete.component';
+import { Router } from '@angular/router';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -22,6 +23,8 @@ import { Direction } from '@angular/cdk/bidi';
 import { TableExportUtil } from 'src/app/shared/tableExportUtil';
 import { TableElement } from 'src/app/shared/TableElement';
 import { formatDate } from '@angular/common';
+import { AuthService } from 'src/app/core/service/auth.service';
+import { Role } from 'src/app/core/models/role';
 
 @Component({
   selector: 'app-createcustomer',
@@ -35,11 +38,14 @@ export class CreatecustomerComponent
   displayedColumns = [
     'select',
     'img',
-    'fname',
+    'name',
     'surname',
     'gender',
+    // 'designation',
     'mobile',
     'email',
+    'date',
+   // 'username',
     'actions',
   ];
   exampleDatabase?: CustomerService;
@@ -48,6 +54,10 @@ export class CreatecustomerComponent
   id?: number;
   customer?: Customer;
   isLoading = true;
+  idValue!:number;
+  url!:string;
+  userId!:number;
+  userRole!:string;
   breadscrums = [
     {
       title: 'All Customer',
@@ -59,7 +69,9 @@ export class CreatecustomerComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public customerService: CustomerService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService:AuthService,
+    private router: Router
   ) {
     super();
   }
@@ -71,6 +83,12 @@ export class CreatecustomerComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
+    const currentUserString = localStorage.getItem("currentUser");
+    if (currentUserString) {
+      const currentUser = JSON.parse(currentUserString);
+      const userId = currentUser.id;
+      const userRole = currentUser.role;
+    }
     this.loadData();
   }
   refresh() {
@@ -233,16 +251,22 @@ export class CreatecustomerComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        Name: x.fname,
-        Surname: x.surname,
-        Gender: x.gender,
-        Mobile: x.mobile,
-        Email: x.email,
+        // Name: x.fname,
+        // Surname: x.surname,
+        // Gender: x.gender,
+        // Mobile: x.mobile,
+        // Email: x.email,
 
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
   }
+
+  redirectToPage(rowId: number) {
+    this.router.navigate(['/admin/agent/about-agent', rowId]);
+  // Add more conditions for other pages if needed
+}
+
 
   showNotification(
     colorName: string,
@@ -305,11 +329,14 @@ export class ExampleDataSource extends DataSource<Customer> {
           .slice()
           .filter((customer: Customer) => {
             const searchStr = (
-              customer.fname +
-              customer.surname +
+              customer.user.first_name +
+              customer.user.last_name +
               customer.gender +
-              customer.email +
-              customer.mobile 
+              customer.user.state +
+              customer.user.email +
+              customer.user.phone +
+              customer.dob +
+              customer.user.address
               ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -340,21 +367,21 @@ export class ExampleDataSource extends DataSource<Customer> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'fname':
-          [propertyA, propertyB] = [a.fname, b.fname];
-          break;
-          case 'surname':
-            [propertyA, propertyB] = [a.surname, b.surname];
-            break;
-         case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
-          break;
+        // case 'fname':
+        //   [propertyA, propertyB] = [a.fname, b.fname];
+        //   break;
+        //   case 'surname':
+        //     [propertyA, propertyB] = [a.surname, b.surname];
+        //     break;
+        //  case 'email':
+        //   [propertyA, propertyB] = [a.email, b.email];
+        //   break;
           case 'gender':
             [propertyA, propertyB] = [a.gender, b.gender];
             break;
-        case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
-          break;
+        // case 'mobile':
+        //   [propertyA, propertyB] = [a.mobile, b.mobile];
+        //   break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;

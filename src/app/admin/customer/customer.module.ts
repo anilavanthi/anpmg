@@ -26,7 +26,7 @@ import { AddFormComponent } from './createcustomer/add/add-form/add-form.compone
 import { DeleteComponent } from './createcustomer/add/delete/delete.component';
 import { CustomerService } from './createcustomer/customer.service';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
-
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
@@ -61,6 +61,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
     MatProgressSpinnerModule,
     ComponentsModule,
     SharedModule,
+    MatStepperModule,
   ],
   providers: [CustomerService],
 })

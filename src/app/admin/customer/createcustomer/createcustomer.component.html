@@ -24,11 +24,11 @@
             <div class="right">
               <ul class="tbl-export-btn">
                 <li class="tbl-header-btn">
-                  <div class="m-l-10" matTooltip="ADD">
+                  <!-- <div class="m-l-10" matTooltip="ADD">
                     <button mat-mini-fab color="primary" (click)="addNew()">
                       <mat-icon class="col-white">add</mat-icon>
                     </button>
-                  </div>
+                  </div> -->
                 </li>
                 <li class="tbl-header-btn">
                   <div class="m-l-10" matTooltip="REFRESH">
@@ -78,35 +78,57 @@
                 <ng-container matColumnDef="img">
                   <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Image
                   </mat-header-cell>
-                  <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"><span
-                      class="mobile-label">Image:</span> <img [src]="row.img" />
+                  <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6">
+                    <span
+                      class="mobile-label">Image:</span> <img [src]="row.photo" />
                   </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="fname">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                   <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">Name:</span> {{row.fname}}</mat-cell>
+                    <span class="mobile-label">Name:</span> {{row.user.first_name}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="surname">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Surname</mat-header-cell>
                   <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">Sur Name:</span> {{row.surname}}</mat-cell>
+                    <span class="mobile-label">Sur Name:</span> {{row.user.last_name}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gender">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">Gender:</span> {{row.gender}}</mat-cell>
+                  <!-- <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
+                    <span class="mobile-label">Gender:</span> {{row.gender}}</mat-cell> -->
+                    <mat-cell mat-cell *matCellDef="let row">
+                      <span class="mobile-label">Gender:</span>
+                      <div *ngIf="row.gender==='Male'">
+                        <span class="badge badge-solid-green">
+                          {{row.gender}}</span>
+                      </div>
+                      <div *ngIf="row.gender==='Female'">
+                        <span class="badge badge-solid-purple">
+                          {{row.gender}}</span>
+                      </div>
+                      <div *ngIf="row.gender==='other'">
+                        <span class="badge badge-solid-orange">
+                          {{row.gender}}</span>
+                      </div>
+                    </mat-cell>
                 </ng-container>
                 
                 <ng-container matColumnDef="mobile">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
                   <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">Mobile:</span> {{row.mobile}}</mat-cell>
+                    <span class="mobile-label">Mobile:</span> {{row.user.phone}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="email">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                   <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">Email:</span> {{row.email}}</mat-cell>
+                    <span class="mobile-label">Email:</span> {{row.user.email}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
+                    <span class="mobile-label">Date of Birth:</span> {{row.dob | date: 'MM/dd/yyyy'}}</mat-cell>
                 </ng-container>
                
                 

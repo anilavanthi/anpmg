@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Customer } from './customer.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Customer, CustomerResponse } from './customer.model';
+import { HttpClient, HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import {environment} from 'src/environments/environment';
+import { AuthService } from 'src/app/core/service/auth.service';
+import { Role } from 'src/app/core/models/role';
 @Injectable()
 export class CustomerService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/customer.json';
   isTblLoading = true;
+  url!:string;
   dataChange: BehaviorSubject<Customer[]> = new BehaviorSubject<Customer[]>([]);
   // Temporarily stores data from dialogs
   dialogData!: Customer;
@@ -21,10 +25,22 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllCustomers(): void {
-    this.subs.sink = this.httpClient.get<Customer[]>(this.API_URL).subscribe({
+    const currentUserString = localStorage.getItem("currentUser");
+    if (currentUserString) {
+      const currentUser = JSON.parse(currentUserString);
+      const userId = currentUser.id;
+      const userRole = currentUser.role;
+    if(userRole === Role.Admin){
+      this.url = "/masters/customerUser/"; 
+    }
+    else{
+      this.url = "/masters/customerUserLogin/"+userId;
+    }
+  }
+    this.subs.sink = this.httpClient.get<CustomerResponse>(environment.apiUrl+this.url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
-        this.dataChange.next(data);
+        this.dataChange.next(data.data);
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
@@ -35,17 +51,26 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
 
   addCustomer(customer: Customer): void {
     this.dialogData = customer;
-
-    this.httpClient.post(this.API_URL, customer)
+    const formData: FormData = new FormData();
+    const jsonCustomer = JSON.stringify(customer);
+    // formData.append('photo', photo);
+    formData.append('data', jsonCustomer);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    this.httpClient.post(environment.apiUrl+"/masters/customerAdd/", formData,{headers})
       .subscribe({
         next: (data) => {
-          this.dialogData = customer;
+         this.dialogData = customer;
+        //this.dialogData = formData.get('data');
         },
         error: (error: HttpErrorResponse) => {
-           // error code here
+          console.log(error);
         },
       });
   }
+
+
   updateCustomer(customer: Customer): void {
     this.dialogData = customer;
 
