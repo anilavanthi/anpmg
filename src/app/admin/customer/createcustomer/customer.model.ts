@@ -82,6 +82,8 @@ export class CustomerResponse{
       referencerelation : string;
       createdby :number;
       modifiedby:number;
+      createdon!:Date;
+      createdby_username!:string;
       education_name! : string;
       source_name! : string;
       religion_name!:string;

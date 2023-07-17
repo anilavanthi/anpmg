@@ -19,7 +19,7 @@ import { Religion,ReligionResponse } from '../../settings/religion/religion.mode
 import { Caste,CasteResponse } from '../../settings/caste/caste.model';
 import { Educationdetails,EducationdetailsResponse } from '../../settings/educationdetails/educationdetails.model';
 import { Source,SourceResponse } from '../../settings/source/source.model';
-import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { ValidatorFn, AbstractControl, UntypedFormControl } from '@angular/forms';
 import { Role } from 'src/app/core/models/role';
 import { Router } from '@angular/router';
 import { CustomerService } from '../createcustomer/customer.service';
@@ -29,6 +29,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -73,6 +74,9 @@ export class AddCustomerComponent {
   customer1!:Customer;
   userNew!:UserUpdate;
   customerNew!:Customer;
+  selectGender?: string;
+  ShowSubForm1: FormGroup;
+  fIsAliveControl: FormControl;
   genders: string[] = ['Male', 'Female'];
   breadscrums = [
     {
@@ -96,6 +100,7 @@ export class AddCustomerComponent {
     private authService: AuthService,
     private router: Router
     ) {
+      this.fIsAliveControl = new FormControl('');
     this.HFormGroup1 = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -149,7 +154,7 @@ export class AddCustomerComponent {
       fatherreligion: [''],
       fathercaste: [''],
       fccaste: [''],
-      fIsAlive: [''],
+      // fIsAlive: [''],
       mothername: [''],
       mothermname: [''],
       motherreligion: [''],
@@ -161,6 +166,16 @@ export class AddCustomerComponent {
       nobrothers: [''],
       nosisters: [''],
     });
+   this.ShowSubForm1 = new FormGroup({
+    f11: new FormControl(''),
+    f12: new FormControl(''),
+    f13: new FormControl(''),
+    f14: new FormControl(''),
+    f15: new FormControl(''),
+    f16: new FormControl(''),
+    f17: new FormControl(''),
+    f18: new FormControl(''),
+   });
     this.HFormGroup5 = this.fb.group({
       education: ['', Validators.required],
       edudetail: [''],
@@ -191,8 +206,8 @@ export class AddCustomerComponent {
       referencerelation : [''],
       password: ['', Validators.required],
       cpassword: ['', Validators.required],
-      // photo:[''],
-      // idproof:[''],
+      photo:[''],
+      idproof:[''],
     });
 
     this.proForm = this.fb.group({
@@ -216,10 +231,45 @@ export class AddCustomerComponent {
     // this.mobile = inputValue;
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    this.file = file;
-    //this.staff.photo = file;
+//   onFileSelected(event: any): void {
+//     const file: File = event.target.files[0];
+//     this.photofile = file;
+//     const file1: File = event.target.files[1];
+//     this.idfile = file1;
+//     console.log(this.photofile);
+//     console.log(this.idfile);
+//     //this.staff.photo = file;
+// }
+
+
+onFileSelected(event: any): void {
+
+  const files: FileList = event.target.files;
+  // Find the files based on their input field IDs
+  const photoInput: HTMLInputElement = document.getElementById('photo') as HTMLInputElement;
+  const idProofInput: HTMLInputElement = document.getElementById('idproof') as HTMLInputElement;
+
+  const photoFile: File | null = photoInput.files ? photoInput.files[0] : null;
+  const idFile: File | null = idProofInput.files ? idProofInput.files[0] : null;
+
+  if (photoFile && idFile) {
+    console.log("Photo File:", photoFile);
+    console.log("ID File:", idFile);
+
+    // Assign the selected files to the respective variables
+    this.photofile = photoFile;
+    this.idfile = idFile;
+  } else {
+    // Handle the case where two files are not selected
+    console.log("Please select two files.");
+  }
+   
+  }
+
+onIdFileSelected1(event: any): void {
+  const file: File = event.target.files[0];
+  this.idfile = file;
+  //this.staff.photo = file;
 }
 
   showNotification(
@@ -384,7 +434,7 @@ export class AddCustomerComponent {
   
      console.log(this.customerNew); 
 
-     this.customerService.addCustomer(this.customerNew);
+     this.customerService.addCustomer(this.customerNew,this.photofile,this.idfile);
      this.showNotification(
        'snackbar-success',
        'User Created Successfully...!!!',

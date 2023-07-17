@@ -22,19 +22,24 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CreatecustomerComponent } from './createcustomer/createcustomer.component';
-import { AddFormComponent } from './createcustomer/add/add-form/add-form.component';
+// import { AddFormComponent } from './createcustomer/add/add-form/add-form.component';
 import { DeleteComponent } from './createcustomer/add/delete/delete.component';
 import { CustomerService } from './createcustomer/customer.service';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { MatStepperModule } from '@angular/material/stepper';
-
-
+import { MatRadioModule } from '@angular/material/radio';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
+import { AboutCustomerComponent } from './about-customer/about-customer.component';
 @NgModule({
   declarations: [
     CreatecustomerComponent,
-     AddFormComponent,
+    //  AddFormComponent,
     DeleteComponent,
     AddCustomerComponent,
+    AboutCustomerComponent,
     
   ],
   imports: [
@@ -55,13 +60,17 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSelectModule,
     MatDatepickerModule,
     MatCheckboxModule,
+    MatRadioModule,
     MatTabsModule,
     MatMenuModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
     ComponentsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     SharedModule,
     MatStepperModule,
+    MatFormFieldModule,
   ],
   providers: [CustomerService],
 })

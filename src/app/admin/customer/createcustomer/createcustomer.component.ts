@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Customer } from './customer.model';
 import { DataSource } from '@angular/cdk/collections';
-import {AddFormComponent } from './add/add-form/add-form.component';
+// import {AddFormComponent } from './add/add-form/add-form.component';
 import { DeleteComponent } from './add/delete/delete.component';
 import { Router } from '@angular/router';
 import {
@@ -46,6 +46,8 @@ export class CreatecustomerComponent
     'email',
     'date',
    // 'username',
+   'createdby_username',
+   'createdon',
     'actions',
   ];
   exampleDatabase?: CustomerService;
@@ -58,6 +60,8 @@ export class CreatecustomerComponent
   url!:string;
   userId!:number;
   userRole!:string;
+  colorsList:string[] = ['l-bg-purple-dark','bg-cyan','l-bg-orange','bg-green','l-bg-red','bg-indigo','bg-brown','bg-red','bg-blue'];
+  allCustomers: BehaviorSubject<Customer[]> = new BehaviorSubject<Customer[]>([]);
   breadscrums = [
     {
       title: 'All Customer',
@@ -87,81 +91,114 @@ export class CreatecustomerComponent
     if (currentUserString) {
       const currentUser = JSON.parse(currentUserString);
       const userId = currentUser.id;
-      const userRole = currentUser.role;
+      this.userRole = currentUser.role;
     }
     this.loadData();
   }
   refresh() {
     this.loadData();
   }
-  addNew() {
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
-    const dialogRef = this.dialog.open(AddFormComponent, {
-      data: {
-        customer: this.customer,
-        action: 'add',
-      },
-      direction: tempDirection,
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.customerService.getDialogData()
-        );
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
-  }
-  editCall(row: Customer) {
-    this.id = row.id;
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
-    const dialogRef = this.dialog.open(AddFormComponent, {
-      data: {
-        customer: row,
-        action: 'edit',
-      },
-      direction: tempDirection,
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.id === this.id
-        );
-        // Then you update that record using data from dialogData (values you enetered)
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value[foundIndex] =
-            this.customerService.getDialogData();
-          // And lastly refresh table
-          this.refreshTable();
-          this.showNotification(
-            'black',
-            'Edit Record Successfully...!!!',
-            'bottom',
-            'center'
-          );
-        }
-      }
-    });
-  }
+  // addNew() {
+  //   let tempDirection: Direction;
+  //   if (localStorage.getItem('isRtl') === 'true') {
+  //     tempDirection = 'rtl';
+  //   } else {
+  //     tempDirection = 'ltr';
+  //   }
+  //   const dialogRef = this.dialog.open(AddFormComponent, {
+  //     data: {
+  //       customer: this.customer,
+  //       action: 'add',
+  //     },
+  //     direction: tempDirection,
+  //   });
+  //   this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+  //     if (result === 1) {
+  //       // After dialog is closed we're doing frontend updates
+  //       // For add we're just pushing a new row inside DataService
+  //       this.exampleDatabase?.dataChange.value.unshift(
+  //         this.customerService.getDialogData()
+  //       );
+  //       this.refreshTable();
+  //       this.showNotification(
+  //         'snackbar-success',
+  //         'Add Record Successfully...!!!',
+  //         'bottom',
+  //         'center'
+  //       );
+  //     }
+  //   });
+  // }
+  // editCall(row: Customer) {
+  //   this.id = row.id;
+  //   let tempDirection: Direction;
+  //   if (localStorage.getItem('isRtl') === 'true') {
+  //     tempDirection = 'rtl';
+  //   } else {
+  //     tempDirection = 'ltr';
+  //   }
+  //   const dialogRef = this.dialog.open(AddFormComponent, {
+  //     data: {
+  //       customer: row,
+  //       action: 'edit',
+  //     },
+  //     direction: tempDirection,
+  //   });
+  //   this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+  //     if (result === 1) {
+  //       // When using an edit things are little different, firstly we find record inside DataService by id
+  //       const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
+  //         (x) => x.id === this.id
+  //       );
+  //       // Then you update that record using data from dialogData (values you enetered)
+  //       if (foundIndex != null && this.exampleDatabase) {
+  //         this.exampleDatabase.dataChange.value[foundIndex] =
+  //           this.customerService.getDialogData();
+  //         // And lastly refresh table
+  //         this.refreshTable();
+  //         this.showNotification(
+  //           'black',
+  //           'Edit Record Successfully...!!!',
+  //           'bottom',
+  //           'center'
+  //         );
+  //       }
+  //     }
+  //   });
+  // }
+  // deleteItem(row: Customer) {
+  //   this.id = row.id;
+  //   let tempDirection: Direction;
+  //   if (localStorage.getItem('isRtl') === 'true') {
+  //     tempDirection = 'rtl';
+  //   } else {
+  //     tempDirection = 'ltr';
+  //   }
+  //   const dialogRef = this.dialog.open(DeleteComponent, {
+  //     data: row,
+  //     direction: tempDirection,
+  //   });
+  //   this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+  //     if (result === 1) {
+  //       const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
+  //         (x) => x.id === this.id
+  //       );
+  //       // for delete we use splice in order to remove single object from DataService
+  //       if (foundIndex != null && this.exampleDatabase) {
+  //         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+  //         this.refreshTable();
+  //         this.showNotification(
+  //           'snackbar-danger',
+  //           'Delete Record Successfully...!!!',
+  //           'bottom',
+  //           'center'
+  //         );
+  //       }
+  //     }
+  //   });
+  // }
+
+
   deleteItem(row: Customer) {
     this.id = row.id;
     let tempDirection: Direction;
@@ -170,29 +207,32 @@ export class CreatecustomerComponent
     } else {
       tempDirection = 'ltr';
     }
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      data: row,
-      direction: tempDirection,
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.id === this.id
-        );
-        // for delete we use splice in order to remove single object from DataService
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-          this.refreshTable();
-          this.showNotification(
-            'snackbar-danger',
-            'Delete Record Successfully...!!!',
-            'bottom',
-            'center'
-          );
-        }
-      }
-    });
+    /* const dialogRef = this.dialog.open(DeleteDialogComponent, {
+       data: row,
+       direction: tempDirection,
+     });*/
+    // this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+    //   if (result === 1) {
+    const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
+      (x) => x.id === this.id
+    );
+    // for delete we use splice in order to remove single object from DataService
+    if (foundIndex != null && this.exampleDatabase) {
+      this.customerService.deleteCustomer(this.id);
+      this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+      this.refreshTable();
+      this.showNotification(
+        'snackbar-danger',
+        'Delete Customer Successfully...!!!',
+        'top',
+        'center'
+      );
+    }
+    //   }
+    // });
   }
+
+
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
@@ -230,6 +270,8 @@ export class CreatecustomerComponent
     );
   }
   public loadData() {
+    this.customerService.getAllCustomers();
+    this.allCustomers = this.customerService.dataChange;
     this.exampleDatabase = new CustomerService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
@@ -263,7 +305,7 @@ export class CreatecustomerComponent
   }
 
   redirectToPage(rowId: number) {
-    this.router.navigate(['/admin/agent/about-agent', rowId]);
+    this.router.navigate(['/admin/customer/about-customer', rowId]);
   // Add more conditions for other pages if needed
 }
 

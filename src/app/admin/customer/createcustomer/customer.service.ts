@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Customer, CustomerResponse } from './customer.model';
+import { BehaviorSubject,Observable } from 'rxjs';
+import { Customer, CustomerResponse,SingleCustomerResponse,User,UserUpdate } from './customer.model';
 import { HttpClient, HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import {environment} from 'src/environments/environment';
@@ -49,11 +49,12 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  addCustomer(customer: Customer): void {
+  addCustomer(customer: Customer,photo:File,idFile:File): void {
     this.dialogData = customer;
     const formData: FormData = new FormData();
     const jsonCustomer = JSON.stringify(customer);
-    // formData.append('photo', photo);
+    formData.append('photo', photo);
+    formData.append('idproof',idFile);
     formData.append('data', jsonCustomer);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
@@ -70,6 +71,10 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
       });
   }
 
+  getCustomerData(id:number):Observable<SingleCustomerResponse> {
+    return this.httpClient.get<SingleCustomerResponse>(environment.apiUrl+"/masters/getCustomer/"  + id)
+   }
+
 
   updateCustomer(customer: Customer): void {
     this.dialogData = customer;
@@ -85,16 +90,15 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
     //     });
   }
   deleteCustomer(id: number): void {
-    console.log(id);
-
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.delete(environment.apiUrl+"/masters/customerUserLogin/" + id)
+      .subscribe({
+        next: (data) => {
+          console.log(id);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error);
+        },
+      });
   }
+
 }

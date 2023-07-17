@@ -28,12 +28,25 @@
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
-                              <mat-label>Last Name</mat-label>
+                              <mat-label>Sur Name</mat-label>
                               <input matInput formControlName="last_name" maxlength="20">
                               <mat-icon matSuffix>face</mat-icon>
+                              <mat-error *ngIf="HFormGroup1.get('last_name')?.hasError('required')">
+                                Sur name is required
+                              </mat-error>
                             </mat-form-field>  
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-label>Gender</mat-label>
+                              <mat-radio-group formControlName="gender" required>
+                                <mat-radio-button value="Male">Male</mat-radio-button>
+                                <mat-radio-button value="Female">Female</mat-radio-button>
+                              </mat-radio-group>          
+                              <mat-error *ngIf="HFormGroup1.get('gender')?.hasError('required')">
+                                Gender is required
+                              </mat-error>
+                          </div>
+                          <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Gender</mat-label>
                               <mat-select formControlName="gender" required>
@@ -44,7 +57,7 @@
                                 Gender is required
                               </mat-error>
                             </mat-form-field>
-                          </div>
+                          </div> -->
                         </div>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
@@ -84,11 +97,13 @@
                             <mat-label>Marital Status</mat-label>
                             <mat-select formControlName="maritalStatus" required>
                               <mat-option [value]="'Unmarried'">Unmarried</mat-option>
-                              <mat-option [value]="'Married'">Married</mat-option>
                               <mat-option [value]="'Widowed'">Widowed</mat-option>
                               <mat-option [value]="'Divorced'">Divorced</mat-option>
                               <mat-option [value]="'Waiting for Divorce'">Waiting for Divorce</mat-option>
                             </mat-select>
+                            <mat-error *ngIf="HFormGroup1.get('maritalStatus')?.hasError('required')">
+                              Marital Status is required
+                            </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
@@ -101,159 +116,188 @@
                               <mat-option [value]="'Son'">Son</mat-option>
                               <mat-option [value]="'Daughter'">Daughter</mat-option>
                             </mat-select>
+                            <mat-error *ngIf="HFormGroup1.get('applicationFor')?.hasError('required')">
+                              Application for is required
+                            </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Eating Habits</mat-label>
-                            <mat-select formControlName="eating">
-                              <mat-option [value]="'Vegetarian'">Vegetarian</mat-option>
-                              <mat-option [value]="'Non Vegetarian'">Non Vegetarian</mat-option>
-                              <mat-option [value]="'Eggetarian'">Eggetarian</mat-option>
-                            </mat-select>
-                          </mat-form-field> 
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Height</mat-label>
                             <mat-select formControlName="height" required>
-                              <mat-option [value]="'4ft 6in'">4ft 6in</mat-option>
-                              <mat-option [value]="'4ft 7in'">4ft 7in</mat-option>
-                              <mat-option [value]="'4ft 8in'">4ft 8in</mat-option>
-                              <mat-option [value]="'4ft 9in'">4ft 9in</mat-option>
-                              <mat-option [value]="'4ft 10in'">4ft 10in</mat-option>
-                              <mat-option [value]="'5ft'">5ft</mat-option>
-                              <mat-option [value]="'5ft 1in'">5ft 1in</mat-option>
-                              <mat-option [value]="'5ft 2in'">5ft 2in</mat-option>
-                              <mat-option [value]="'5ft 3in'">5ft 3in</mat-option>
-                              <mat-option [value]="'5ft 4in'">5ft 4in</mat-option>
-                              <mat-option [value]="'5ft 5in'">5ft 5in</mat-option>
-                              <mat-option [value]="'5ft 6in'">5ft 6in</mat-option>
-                              <mat-option [value]="'5ft 7in'">5ft 7in</mat-option>
-                              <mat-option [value]="'5ft 8in'">5ft 8in</mat-option>
-                              <mat-option [value]="'5ft 9in'">5ft 9in</mat-option>
-                              <mat-option [value]="'5ft 10in'">5ft 10in</mat-option>  
-                              <mat-option [value]="'5ft 11in'">5ft 11in</mat-option>  
-                              <mat-option [value]="'6ft'">6ft</mat-option>
-                              <mat-option [value]="'6ft 1in'">6ft 1in</mat-option>
-                              <mat-option [value]="'6ft 2in'">6ft 2in</mat-option>
-                              <mat-option [value]="'6ft 3in'">6ft 3in</mat-option>
-                              <mat-option [value]="'6ft 4in'">6ft 4in</mat-option>
-                              <mat-option [value]="'6ft 5in'">6ft 5in</mat-option>
-                              <mat-option [value]="'6ft 6in'">6ft 6in</mat-option>
-                              <mat-option [value]="'6ft 7in'">6ft 7in</mat-option>
-                              <mat-option [value]="'6ft 8in'">6ft 8in</mat-option>
-                              <mat-option [value]="'6ft 9in'">6ft 9in</mat-option>
-                              <mat-option [value]="'6ft 10in'">6ft 10in</mat-option>  
-                              <mat-option [value]="'6ft 11in'">6ft 11in</mat-option>  
-                              <mat-option [value]="'7ft'">7ft</mat-option>  
+                              <mat-option [value]="'4-6'">4ft 6in</mat-option>
+                              <mat-option [value]="'4-7'">4ft 7in</mat-option>
+                              <mat-option [value]="'4-8'">4ft 8in</mat-option>
+                              <mat-option [value]="'4-9'">4ft 9in</mat-option>
+                              <mat-option [value]="'4-10'">4ft 10in</mat-option>
+                              <mat-option [value]="'5-0'">5ft</mat-option>
+                              <mat-option [value]="'5-1'">5ft 1in</mat-option>
+                              <mat-option [value]="'5-2'">5ft 2in</mat-option>
+                              <mat-option [value]="'5-3'">5ft 3in</mat-option>
+                              <mat-option [value]="'5-4'">5ft 4in</mat-option>
+                              <mat-option [value]="'5-5'">5ft 5in</mat-option>
+                              <mat-option [value]="'5-6'">5ft 6in</mat-option>
+                              <mat-option [value]="'5-7'">5ft 7in</mat-option>
+                              <mat-option [value]="'5-8'">5ft 8in</mat-option>
+                              <mat-option [value]="'5-9'">5ft 9in</mat-option>
+                              <mat-option [value]="'5-10'">5ft 10in</mat-option>  
+                              <mat-option [value]="'5-11'">5ft 11in</mat-option>  
+                              <mat-option [value]="'6-0'">6ft</mat-option>
+                              <mat-option [value]="'6-1'">6ft 1in</mat-option>
+                              <mat-option [value]="'6-2'">6ft 2in</mat-option>
+                              <mat-option [value]="'6-3'">6ft 3in</mat-option>
+                              <mat-option [value]="'6-4'">6ft 4in</mat-option>
+                              <mat-option [value]="'6-5'">6ft 5in</mat-option>
+                              <mat-option [value]="'6-6'">6ft 6in</mat-option>
+                              <mat-option [value]="'6-7'">6ft 7in</mat-option>
+                              <mat-option [value]="'6-8'">6ft 8in</mat-option>
+                              <mat-option [value]="'6-9'">6ft 9in</mat-option>
+                              <mat-option [value]="'6-10'">6ft 10in</mat-option>  
+                              <mat-option [value]="'6-11'">6ft 11in</mat-option>  
+                              <mat-option [value]="'7-0'">7ft</mat-option>  
                             </mat-select>
+                            <mat-error *ngIf="HFormGroup1.get('height')?.hasError('required')">
+                              Height for is required
+                            </mat-error>
                           </mat-form-field>
                         </div>
+                       
+                        </div>
+                        <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Weight</mat-label>
                               <mat-select formControlName="weight" required>
-                                <mat-option [value]="'41 Kg'">41 Kg</mat-option>
-                                <mat-option [value]="'42 Kg'">42 Kg</mat-option>
-                                <mat-option [value]="'43 Kg'">43 Kg</mat-option>
-                                <mat-option [value]="'44 Kg'">44 Kg</mat-option>
-                                <mat-option [value]="'45 Kg'">45 Kg</mat-option>
-                                <mat-option [value]="'46 Kg'">46 Kg</mat-option>
-                                <mat-option [value]="'47 Kg'">47 Kg</mat-option>
-                                <mat-option [value]="'48 Kg'">48 Kg</mat-option>
-                                <mat-option [value]="'49 Kg'">49 Kg</mat-option>
-                                <mat-option [value]="'50 Kg'">50 Kg</mat-option>
-                                <mat-option [value]="'51 Kg'">51 Kg</mat-option>
-                                <mat-option [value]="'52 Kg'">52 Kg</mat-option>
-                                <mat-option [value]="'53 Kg'">53 Kg</mat-option>
-                                <mat-option [value]="'54 Kg'">54 Kg</mat-option>
-                                <mat-option [value]="'55 Kg'">55 Kg</mat-option>
-                                <mat-option [value]="'56 Kg'">56 Kg</mat-option>
-                                <mat-option [value]="'57 Kg'">57 Kg</mat-option>
-                                <mat-option [value]="'58 Kg'">58 Kg</mat-option>
-                                <mat-option [value]="'59 Kg'">59 Kg</mat-option>
-                                <mat-option [value]="'60 Kg'">60 Kg</mat-option>
-                                <mat-option [value]="'61 Kg'">61 Kg</mat-option>
-                                <mat-option [value]="'62 Kg'">62 Kg</mat-option>
-                                <mat-option [value]="'63 Kg'">63 Kg</mat-option>
-                                <mat-option [value]="'64 Kg'">64 Kg</mat-option>
-                                <mat-option [value]="'65 Kg'">65 Kg</mat-option>
-                                <mat-option [value]="'66 Kg'">66 Kg</mat-option>
-                                <mat-option [value]="'67 Kg'">67 Kg</mat-option>
-                                <mat-option [value]="'68 Kg'">68 Kg</mat-option>
-                                <mat-option [value]="'69 Kg'">69 Kg</mat-option>
-                                <mat-option [value]="'70 Kg'">70 Kg</mat-option>
-                                <mat-option [value]="'71 Kg'">71 Kg</mat-option>
-                                <mat-option [value]="'72 Kg'">72 Kg</mat-option>
-                                <mat-option [value]="'73 Kg'">73 Kg</mat-option>
-                                <mat-option [value]="'74 Kg'">74 Kg</mat-option>
-                                <mat-option [value]="'75 Kg'">75 Kg</mat-option>
-                                <mat-option [value]="'76 Kg'">76 Kg</mat-option>
-                                <mat-option [value]="'77 Kg'">77 Kg</mat-option>
-                                <mat-option [value]="'78 Kg'">78 Kg</mat-option>
-                                <mat-option [value]="'79 Kg'">79 Kg</mat-option>
-                                <mat-option [value]="'80 Kg'">80 Kg</mat-option>
-                                <mat-option [value]="'91 Kg'">91 Kg</mat-option>
-                                <mat-option [value]="'92 Kg'">92 Kg</mat-option>
-                                <mat-option [value]="'93 Kg'">93 Kg</mat-option>
-                                <mat-option [value]="'94 Kg'">94 Kg</mat-option>
-                                <mat-option [value]="'95 Kg'">95 Kg</mat-option>
-                                <mat-option [value]="'96 Kg'">96 Kg</mat-option>
-                                <mat-option [value]="'97 Kg'">97 Kg</mat-option>
-                                <mat-option [value]="'98 Kg'">98 Kg</mat-option>
-                                <mat-option [value]="'99 Kg'">99 Kg</mat-option>
-                                <mat-option [value]="'100 Kg'">100 Kg</mat-option>
-                                <mat-option [value]="'101 Kg'">101 Kg</mat-option>
-                                <mat-option [value]="'102 Kg'">102 Kg</mat-option>
-                                <mat-option [value]="'103 Kg'">103 Kg</mat-option>
-                                <mat-option [value]="'104 Kg'">104 Kg</mat-option>
-                                <mat-option [value]="'105 Kg'">105 Kg</mat-option>
-                                <mat-option [value]="'106 Kg'">106 Kg</mat-option>
-                                <mat-option [value]="'107 Kg'">107 Kg</mat-option>
-                                <mat-option [value]="'108 Kg'">108 Kg</mat-option>
-                                <mat-option [value]="'109 Kg'">109 Kg</mat-option>
-                                <mat-option [value]="'110 Kg'">110 Kg</mat-option>
-                                <mat-option [value]="'111 Kg'">111 Kg</mat-option>
-                                <mat-option [value]="'112 Kg'">112 Kg</mat-option>
-                                <mat-option [value]="'113 Kg'">113 Kg</mat-option>
-                                <mat-option [value]="'114 Kg'">114 Kg</mat-option>
-                                <mat-option [value]="'115 Kg'">115 Kg</mat-option>
-                                <mat-option [value]="'116 Kg'">116 Kg</mat-option>
-                                <mat-option [value]="'117 Kg'">117 Kg</mat-option>
-                                <mat-option [value]="'118 Kg'">118 Kg</mat-option>
-                                <mat-option [value]="'119 Kg'">119 Kg</mat-option>
-                                <mat-option [value]="'120 Kg'">120 Kg</mat-option>
-                                <mat-option [value]="'121 Kg'">121 Kg</mat-option>
-                                <mat-option [value]="'122 Kg'">122 Kg</mat-option>
-                                <mat-option [value]="'123 Kg'">123 Kg</mat-option>
-                                <mat-option [value]="'124 Kg'">124 Kg</mat-option>
-                                <mat-option [value]="'125 Kg'">125 Kg</mat-option>
-                                <mat-option [value]="'126 Kg'">126 Kg</mat-option>
-                                <mat-option [value]="'127 Kg'">127 Kg</mat-option>
-                                <mat-option [value]="'128 Kg'">128 Kg</mat-option>
-                                <mat-option [value]="'129 Kg'">129 Kg</mat-option>
-                                <mat-option [value]="'130 Kg'">130 Kg</mat-option>
-                                <mat-option [value]="'131 Kg'">131 Kg</mat-option>
-                                <mat-option [value]="'132 Kg'">132 Kg</mat-option>
-                                <mat-option [value]="'133 Kg'">133 Kg</mat-option>
-                                <mat-option [value]="'134 Kg'">134 Kg</mat-option>
-                                <mat-option [value]="'135 Kg'">135 Kg</mat-option>
-                                <mat-option [value]="'136 Kg'">136 Kg</mat-option>
-                                <mat-option [value]="'137 Kg'">137 Kg</mat-option>
-                                <mat-option [value]="'138 Kg'">138 Kg</mat-option>
-                                <mat-option [value]="'139 Kg'">139 Kg</mat-option>
-                                <mat-option [value]="'140 Kg'">140 Kg</mat-option>
+                                <mat-option [value]="'41'">41 Kg</mat-option>
+                                <mat-option [value]="'42'">42 Kg</mat-option>
+                                <mat-option [value]="'43'">43 Kg</mat-option>
+                                <mat-option [value]="'44'">44 Kg</mat-option>
+                                <mat-option [value]="'45'">45 Kg</mat-option>
+                                <mat-option [value]="'46'">46 Kg</mat-option>
+                                <mat-option [value]="'47'">47 Kg</mat-option>
+                                <mat-option [value]="'48'">48 Kg</mat-option>
+                                <mat-option [value]="'49'">49 Kg</mat-option>
+                                <mat-option [value]="'50'">50 Kg</mat-option>
+                                <mat-option [value]="'51'">51 Kg</mat-option>
+                                <mat-option [value]="'52'">52 Kg</mat-option>
+                                <mat-option [value]="'53'">53 Kg</mat-option>
+                                <mat-option [value]="'54'">54 Kg</mat-option>
+                                <mat-option [value]="'55'">55 Kg</mat-option>
+                                <mat-option [value]="'56'">56 Kg</mat-option>
+                                <mat-option [value]="'57'">57 Kg</mat-option>
+                                <mat-option [value]="'58'">58 Kg</mat-option>
+                                <mat-option [value]="'59'">59 Kg</mat-option>
+                                <mat-option [value]="'60'">60 Kg</mat-option>
+                                <mat-option [value]="'61'">61 Kg</mat-option>
+                                <mat-option [value]="'62'">62 Kg</mat-option>
+                                <mat-option [value]="'63'">63 Kg</mat-option>
+                                <mat-option [value]="'64'">64 Kg</mat-option>
+                                <mat-option [value]="'65'">65 Kg</mat-option>
+                                <mat-option [value]="'66'">66 Kg</mat-option>
+                                <mat-option [value]="'67'">67 Kg</mat-option>
+                                <mat-option [value]="'68'">68 Kg</mat-option>
+                                <mat-option [value]="'69'">69 Kg</mat-option>
+                                <mat-option [value]="'70'">70 Kg</mat-option>
+                                <mat-option [value]="'71'">71 Kg</mat-option>
+                                <mat-option [value]="'72'">72 Kg</mat-option>
+                                <mat-option [value]="'73'">73 Kg</mat-option>
+                                <mat-option [value]="'74'">74 Kg</mat-option>
+                                <mat-option [value]="'75'">75 Kg</mat-option>
+                                <mat-option [value]="'76'">76 Kg</mat-option>
+                                <mat-option [value]="'77'">77 Kg</mat-option>
+                                <mat-option [value]="'78'">78 Kg</mat-option>
+                                <mat-option [value]="'79'">79 Kg</mat-option>
+                                <mat-option [value]="'80'">80 Kg</mat-option>
+                                <mat-option [value]="'91'">91 Kg</mat-option>
+                                <mat-option [value]="'92'">92 Kg</mat-option>
+                                <mat-option [value]="'93'">93 Kg</mat-option>
+                                <mat-option [value]="'94'">94 Kg</mat-option>
+                                <mat-option [value]="'95'">95 Kg</mat-option>
+                                <mat-option [value]="'96'">96 Kg</mat-option>
+                                <mat-option [value]="'97'">97 Kg</mat-option>
+                                <mat-option [value]="'98'">98 Kg</mat-option>
+                                <mat-option [value]="'99'">99 Kg</mat-option>
+                                <mat-option [value]="'100'">100 Kg</mat-option>
+                                <mat-option [value]="'101'">101 Kg</mat-option>
+                                <mat-option [value]="'102'">102 Kg</mat-option>
+                                <mat-option [value]="'103'">103 Kg</mat-option>
+                                <mat-option [value]="'104'">104 Kg</mat-option>
+                                <mat-option [value]="'105'">105 Kg</mat-option>
+                                <mat-option [value]="'106'">106 Kg</mat-option>
+                                <mat-option [value]="'107'">107 Kg</mat-option>
+                                <mat-option [value]="'108'">108 Kg</mat-option>
+                                <mat-option [value]="'109'">109 Kg</mat-option>
+                                <mat-option [value]="'110'">110 Kg</mat-option>
+                                <mat-option [value]="'111'">111 Kg</mat-option>
+                                <mat-option [value]="'112'">112 Kg</mat-option>
+                                <mat-option [value]="'113'">113 Kg</mat-option>
+                                <mat-option [value]="'114'">114 Kg</mat-option>
+                                <mat-option [value]="'115'">115 Kg</mat-option>
+                                <mat-option [value]="'116'">116 Kg</mat-option>
+                                <mat-option [value]="'117'">117 Kg</mat-option>
+                                <mat-option [value]="'118'">118 Kg</mat-option>
+                                <mat-option [value]="'119'">119 Kg</mat-option>
+                                <mat-option [value]="'120'">120 Kg</mat-option>
+                                <mat-option [value]="'121'">121 Kg</mat-option>
+                                <mat-option [value]="'122'">122 Kg</mat-option>
+                                <mat-option [value]="'123'">123 Kg</mat-option>
+                                <mat-option [value]="'124'">124 Kg</mat-option>
+                                <mat-option [value]="'125'">125 Kg</mat-option>
+                                <mat-option [value]="'126'">126 Kg</mat-option>
+                                <mat-option [value]="'127'">127 Kg</mat-option>
+                                <mat-option [value]="'128'">128 Kg</mat-option>
+                                <mat-option [value]="'129'">129 Kg</mat-option>
+                                <mat-option [value]="'130'">130 Kg</mat-option>
+                                <mat-option [value]="'131'">131 Kg</mat-option>
+                                <mat-option [value]="'132'">132 Kg</mat-option>
+                                <mat-option [value]="'133'">133 Kg</mat-option>
+                                <mat-option [value]="'134'">134 Kg</mat-option>
+                                <mat-option [value]="'135'">135 Kg</mat-option>
+                                <mat-option [value]="'136'">136 Kg</mat-option>
+                                <mat-option [value]="'137'">137 Kg</mat-option>
+                                <mat-option [value]="'138'">138 Kg</mat-option>
+                                <mat-option [value]="'139'">139 Kg</mat-option>
+                                <mat-option [value]="'140'">140 Kg</mat-option>
                               </mat-select>
+                              <mat-error *ngIf="HFormGroup1.get('weight')?.hasError('required')">
+                                Weight for is required
+                              </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Complexion</mat-label>
+                            <mat-select formControlName="complexion">
+                              <mat-option [value]="'VeryFair'">VeryFair</mat-option>
+                              <mat-option [value]="'Fair'">Fair</mat-option>
+                              <mat-option [value]="'Medium'">Medium</mat-option>
+                              <mat-option [value]="'Dark'">Dark</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                         
+                          <!-- <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Complexion</mat-label>
+                            <input matInput formControlName="complexion" maxlength="20">
+                          </mat-form-field>  -->
+                      </div>  
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Blood Group</mat-label>
+                            <mat-select formControlName="bgroup">
+                              <mat-option [value]="'O+'">O+</mat-option>
+                              <mat-option [value]="'A+'">A+</mat-option>
+                              <mat-option [value]="'B+'">B+</mat-option>
+                              <mat-option [value]="'O-'">O-</mat-option>
+                              <mat-option [value]="'A-'">A-</mat-option>
+                              <mat-option [value]="'B-'">B-</mat-option>
+                              <mat-option [value]="'AB+'">AB+</mat-option>
+                              <mat-option [value]="'AB-'">AB-</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <!-- <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Blood Group</mat-label>
                             <input matInput formControlName="bgroup" maxlength="4">
-                          </mat-form-field>  
+                          </mat-form-field>   -->
                           </div>
                         </div>
                         <div class="row">
@@ -275,18 +319,45 @@
                           </mat-form-field> 
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Mother Tongue</mat-label>
+                            <mat-select formControlName="mtongue">
+                              <mat-option [value]="'Hindi'">Hindi</mat-option>
+                              <mat-option [value]="'Bengali'">Bengali</mat-option>
+                              <mat-option [value]="'Urdu'">Urdu</mat-option>
+                              <mat-option [value]="'Punjabi'">Punjabi</mat-option>
+                              <mat-option [value]="'Marathi'">Marathi</mat-option>
+                              <mat-option [value]="'Telugu'">Telugu</mat-option>
+                              <mat-option [value]="'Tamil'">Tamil</mat-option>
+                              <mat-option [value]="'Gujarati'">Gujarati</mat-option>
+                              <mat-option [value]="'Kannada'">Kannada</mat-option>
+                              <mat-option [value]="'Odia'">Odia</mat-option>
+                              <mat-option [value]="'Malayalam'">Malayalam</mat-option>
+                              <mat-option [value]="'Assamese'">Assamese</mat-option>
+                              <mat-option [value]="'Santali'">Santali</mat-option>
+                              <mat-option [value]="'Marathi'">Marathi</mat-option>
+                              <mat-option [value]="'Manipuri'">Manipuri</mat-option>
+                              <mat-option [value]="'Sanskrit'">Sanskrit</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <!-- <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Mother Tongue</mat-label>
                             <input matInput formControlName="mtongue" maxlength="15">
-                          </mat-form-field>  
+                          </mat-form-field>   -->
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Time of Birth</mat-label>
+                              <input matInput [owlDateTimeTrigger]="time1" [owlDateTime]="time1" formControlName="birthtime" maxlength="15">
+                              <mat-icon matSuffix [owlDateTimeTrigger]="time1" class="date-icon">schedule</mat-icon>
+                              <owl-date-time [pickerType]="'timer'" #time1></owl-date-time>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Time of Birth</mat-label>
                               <input matInput formControlName="birthtime" maxlength="15">
-                            </mat-form-field> 
+                            </mat-form-field>  -->
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width" appearance="outline">
@@ -302,34 +373,62 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
-                              <mat-label>Complexion</mat-label>
-                              <input matInput formControlName="complexion" maxlength="20">
-                            </mat-form-field> 
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width mb-3" appearance="outline">
+                         
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-label>Smoking Habits</mat-label>
+                            <mat-radio-group formControlName="smoke">
+                              <mat-radio-button value="No">No</mat-radio-button>
+                              <mat-radio-button value="Regular">Regular</mat-radio-button>
+                              <mat-radio-button value="Occasionally">Occasionally</mat-radio-button>
+                            </mat-radio-group>    
+                          <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Smoking Habits</mat-label>
                             <mat-select formControlName="smoke">
                               <mat-option [value]="'No'">No</mat-option>
                               <mat-option [value]="'Yes'">Yes</mat-option>
                               <mat-option [value]="'Occasionally'">Occasionally</mat-option>
                             </mat-select>
-                          </mat-form-field>
+                          </mat-form-field> -->
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-label>Drinking Habits</mat-label>
+                          <mat-radio-group formControlName="drink">
+                            <mat-radio-button value="No">No</mat-radio-button>
+                            <mat-radio-button value="Regular">Regular</mat-radio-button>
+                            <mat-radio-button value="Occasionally">Occasionally</mat-radio-button>
+                          </mat-radio-group>
+                          <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Drinking Habits</mat-label>
                             <mat-select formControlName="drink">
                               <mat-option [value]="'No'">No</mat-option>
                               <mat-option [value]="'Yes'">Yes</mat-option>
                               <mat-option [value]="'Occasionally'">Occasionally</mat-option>
                             </mat-select>
-                          </mat-form-field>
+                          </mat-form-field> -->
                           </div>
+                          </div>
+                          <div class="row">
+                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Eating Habits</mat-label>
+                            <mat-radio-group formControlName="eating">
+                              <mat-radio-button value="Vegetarian">Vegetarian</mat-radio-button>
+                              <mat-radio-button value="Non Vegetarian">Non Vegetarian</mat-radio-button>
+                              <mat-radio-button value="Eggetarian">Eggetarian</mat-radio-button>
+                            </mat-radio-group>          
                         </div>
-          
+                          <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Eating Habits</mat-label>
+                              <mat-select formControlName="eating">
+                                <mat-option [value]="'Vegetarian'">Vegetarian</mat-option>
+                                <mat-option [value]="'Non Vegetarian'">Non Vegetarian</mat-option>
+                                <mat-option [value]="'Eggetarian'">Eggetarian</mat-option>
+                              </mat-select>
+                            </mat-form-field> 
+                            </div> -->
+
+                        </div>
+
                         <div>
                           <button mat-raised-button matStepperNext color="primary" [disabled]="!HFormGroup1.valid">Next</button>
                         </div>
@@ -398,10 +497,15 @@
                             </mat-form-field>
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
-                              <mat-label>Alternate Mobile</mat-label>
-                              <input matInput formControlName="altmobile" (input)="onInput($event)" maxlength="10">
-                            </mat-form-field>
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Source</mat-label>
+                              <mat-select formControlName="source" required>
+                                <mat-option *ngFor="let option of sources$ | async" [value]="option.id">{{ option.name }}</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup2.get('source')?.hasError('required')">
+                                Select Any Source
+                              </mat-error>
+                             </mat-form-field>
                           </div>
                         </div>
                          <div class="row">
@@ -413,10 +517,10 @@
                                      </div>
                                      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                       <mat-form-field class="example-full-width" appearance="outline">
-                                        <mat-label>Time to Call</mat-label>
-                                        <input matInput formControlName="timetocall" maxlength="20">
+                                        <mat-label>Alternate Mobile</mat-label>
+                                        <input matInput formControlName="altmobile" (input)="onInput($event)" maxlength="10">
                                       </mat-form-field>
-                                     </div>
+                                    </div>
                                      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                       <mat-form-field class="example-full-width" appearance="outline">
                                         <mat-label>Hobbies</mat-label>
@@ -426,22 +530,38 @@
                                   </div>
                                   <div class="row"> 
                                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                                      <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Spoken Languages</mat-label>
+                                        <mat-select formControlName="lang" multiple>
+                                          <mat-option [value]="'Hindi'">Hindi</mat-option>
+                                          <mat-option [value]="'Bengali'">Bengali</mat-option>
+                                          <mat-option [value]="'Urdu'">Urdu</mat-option>
+                                          <mat-option [value]="'Punjabi'">Punjabi</mat-option>
+                                          <mat-option [value]="'Marathi'">Marathi</mat-option>
+                                          <mat-option [value]="'Telugu'">Telugu</mat-option>
+                                          <mat-option [value]="'Tamil'">Tamil</mat-option>
+                                          <mat-option [value]="'Gujarati'">Gujarati</mat-option>
+                                          <mat-option [value]="'Kannada'">Kannada</mat-option>
+                                          <mat-option [value]="'Odia'">Odia</mat-option>
+                                          <mat-option [value]="'Malayalam'">Malayalam</mat-option>
+                                          <mat-option [value]="'Assamese'">Assamese</mat-option>
+                                          <mat-option [value]="'Santali'">Santali</mat-option>
+                                          <mat-option [value]="'Marathi'">Marathi</mat-option>
+                                          <mat-option [value]="'Manipuri'">Manipuri</mat-option>
+                                          <mat-option [value]="'Sanskrit'">Sanskrit</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                      <!-- <mat-form-field class="example-full-width" appearance="outline">
                                         <mat-label>Spoken Languages</mat-label>
                                         <input matInput formControlName="lang" maxlength="150">
-                                      </mat-form-field> 
+                                      </mat-form-field>  -->
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                                      <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                        <mat-label>Source</mat-label>
-                                        <mat-select formControlName="source" required>
-                                          <mat-option *ngFor="let option of sources$ | async" [value]="option.id">{{ option.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error *ngIf="HFormGroup2.get('source')?.hasError('required')">
-                                          Select Any Source
-                                        </mat-error>
-                                       </mat-form-field>
-                                    </div>
+                                      <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Time to Call</mat-label>
+                                        <input matInput formControlName="timetocall" maxlength="20">
+                                      </mat-form-field>
+                                     </div>
                                   </div>
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
@@ -479,13 +599,18 @@
                              </mat-form-field>
                           </div>   
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Are you converted your Caste</mat-label>
+                          <mat-radio-group formControlName="ccaste">
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                          </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label> Are you converted your Caste </mat-label>
                               <mat-select formControlName="ccaste">
                                 <mat-option [value]="'Yes'">Yes</mat-option>
                                 <mat-option [value]="'No'">No </mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>
                         </div>
                         <div class="row">
@@ -496,34 +621,97 @@
                           </mat-form-field>  
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Star/Nakshatra</mat-label>
+                              <mat-select formControlName="star">
+                                <mat-option [value]="'Aswini'">Aswini</mat-option>
+                                <mat-option [value]="'Bharani'">Bharani</mat-option>
+                                <mat-option [value]="'Kritika'">Kritika</mat-option>
+                                <mat-option [value]="'Rohini'">Rohini</mat-option>
+                                <mat-option [value]="'Mrigasira'">Mrigasira</mat-option>
+                                <mat-option [value]="'Aridra'">Aridra</mat-option>
+                                <mat-option [value]="'Punarvasu'">Punarvasu</mat-option>
+                                <mat-option [value]="'Pushya'">Pushya</mat-option>
+                                <mat-option [value]="'Aslesha'">Aslesha</mat-option>
+                                <mat-option [value]="'Magha'">Magha</mat-option>
+                                <mat-option [value]="'Poorvaphalguni'">Poorvaphalguni</mat-option>
+                                <mat-option [value]="'Uttaraphalguni'">Uttaraphalguni</mat-option>
+                                <mat-option [value]="'Hasta'">Hasta</mat-option>
+                                <mat-option [value]="'Chitra'">Chitra</mat-option>
+                                <mat-option [value]="'Swati'">Swati</mat-option>
+                                <mat-option [value]="'Visakha'">Visakha</mat-option>
+                                <mat-option [value]="'Anuradha'">Anuradha</mat-option>
+                                <mat-option [value]="'Jyehsta'">Jyehsta</mat-option>
+                                <mat-option [value]="'Moola'">Moola</mat-option>
+                                <mat-option [value]="'Poorvashadha'">Poorvashadha</mat-option>
+                                <mat-option [value]="'Uttarashadha'">Uttarashadha</mat-option>
+                                <mat-option [value]="'Sravana'">Sravana</mat-option>
+                                <mat-option [value]="'Dhanshita'">Dhanshita</mat-option>
+                                <mat-option [value]="'Satabisha'">Satabisha</mat-option>
+                                <mat-option [value]="'Poorvabhadrapada'">Poorvabhadrapada</mat-option>
+                                <mat-option [value]="'Uttarabhadrapada'">Uttarabhadrapada</mat-option>
+                                <mat-option [value]="'Revati'">Revati</mat-option>
+                                <mat-option [value]="'Abhijit'">Abhijit</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Star</mat-label>
                               <input matInput formControlName="star" maxlength="20">
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Raasi(Zodiac sign)</mat-label>
+                              <mat-select formControlName="raasi">
+                                <mat-option [value]="'Mesham(Aries)'">Mesham(Aries)</mat-option>
+                                <mat-option [value]="'Vrushabham(Taurus)'">Vrushabham(Taurus)</mat-option>
+                                <mat-option [value]="'Midhunam(Gemini)'">Midhunam(Gemini)</mat-option>
+                                <mat-option [value]="'Karkatakam(Cancer)'">Karkatakam(Cancer)</mat-option>
+                                <mat-option [value]="'Simham(Leo)'">Simham(Leo)</mat-option>
+                                <mat-option [value]="'Kanya(Virgo)'">Kanya(Virgo)</mat-option>
+                                <mat-option [value]="'Thula(Libra)'">Thula(Libra)</mat-option>
+                                <mat-option [value]="'Vruschikam(Scorpio)'">Vruschikam(Scorpio)</mat-option>
+                                <mat-option [value]="'Dhanussu(Sagitarus)'">Dhanussu(Sagitarus)</mat-option>
+                                <mat-option [value]="'Makaram(Capricorn)'">Makaram(Capricorn)</mat-option>
+                                <mat-option [value]="'Kumbham(Aquarius)'">Kumbham(Aquarius)</mat-option>
+                                <mat-option [value]="'Meenam(Pisces)'">Meenam(Pisces)</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Raasi</mat-label>
                               <input matInput formControlName="raasi" maxlength="20">
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                           <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Padam</mat-label>
+                            <mat-radio-group formControlName="padam">
+                              <mat-radio-button value="1">1</mat-radio-button>
+                              <mat-radio-button value="2">2</mat-radio-button>
+                              <mat-radio-button value="3">3</mat-radio-button>
+                              <mat-radio-button value="4">4</mat-radio-button>
+                            </mat-radio-group>
+                           <!-- <mat-form-field class="example-full-width" appearance="outline">
                              <mat-label>Padam</mat-label>
                              <input matInput formControlName="padam" maxlength="20">
-                           </mat-form-field>  
+                           </mat-form-field>   -->
                            </div>
                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Khuja Dosham</mat-label>
+                            <mat-radio-group formControlName="dosham">
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                              <mat-radio-button value="Dont Know">Dont Know</mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Khuja Dosham</mat-label>
                               <mat-select formControlName="dosham">
                                 <mat-option [value]="'Yes'">Yes</mat-option>
                                 <mat-option [value]="'No'">No</mat-option>
                                 <mat-option [value]="'Dont Know'">Dont Know</mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                            </div>
                          </div>
                         <div>
@@ -539,16 +727,33 @@
                         <ng-template matStepLabel >Family</ng-template>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                           <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Family Status</mat-label>
+                              <mat-select formControlName="fstatus">
+                                <mat-option [value]="'Very Rich'">Very Rich</mat-option>
+                                <mat-option [value]="'Rich'">Rich</mat-option>
+                                <mat-option [value]="'Medium'">Medium</mat-option>
+                                <mat-option [value]="'Poor'">Poor</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Family Status</mat-label>
                             <input matInput formControlName="fstatus" maxlength="20">
-                          </mat-form-field>  
+                          </mat-form-field>   -->
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Family Type</mat-label>
+                              <mat-select formControlName="ftype">
+                                <mat-option [value]="'Joint Family'">Joint Family</mat-option>
+                                <mat-option [value]="'Nuclear Family'">Nuclear Family</mat-option>
+                                <mat-option [value]="'Others'">Others</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Family Type</mat-label>
                               <input matInput formControlName="ftype" maxlength="20">
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>   
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
@@ -571,26 +776,93 @@
                             </mat-form-field>
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Father is Converted Caste</mat-label>
+                            <mat-radio-group formControlName="fccaste">
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Is Converted Caste</mat-label>
                               <mat-select formControlName="fccaste">
                                 <mat-option [value]="'Yes'">Yes</mat-option>
                                 <mat-option [value]="'No'">No</mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
-                              <mat-label>Father Status (Late/Alive)</mat-label>
-                              <mat-select formControlName="fIsAlive">
-                                <mat-option [value]="'Late'">Late</mat-option>
-                                <mat-option [value]="'Alive'">Alive</mat-option>
-                              </mat-select>
-                            </mat-form-field>
+                            <mat-label>Father Status</mat-label>
+                            <mat-radio-group formControlName="fIsAlive">
+                              <mat-radio-button value="Late">Late</mat-radio-button>
+                              <mat-radio-button value="Alive">Alive</mat-radio-button>
+                            </mat-radio-group>
                            </div>
                         </div>
+                        <!-- <div *ngIf="fIsAliveControl.value === 'Alive'">
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Health Condition</mat-label>
+                                <input matInput formControlName="f11" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Working Sector</mat-label>
+                                <input matInput formControlName="f12" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput formControlName="f13" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Profession</mat-label>
+                                <input matInput formControlName="f14" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Address</mat-label>
+                                <input matInput formControlName="f15" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Annual Income</mat-label>
+                                <input matInput formControlName="f16" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Property Details</mat-label>
+                                <input matInput formControlName="f17" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Pension</mat-label>
+                                <input matInput formControlName="f18" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div> -->
+                        
+                        <!-- <div *ngIf="ShowSubForm1.value === 'Alive'">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Sub Form Field</mat-label>
+                            <input matInput formControlName="subFormField">
+                          </mat-form-field>
+                        </div> -->
+                        
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                            <mat-form-field class="example-full-width" appearance="outline">
@@ -619,22 +891,32 @@
                            </mat-form-field>
                            </div>
                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Mother is Converted Caste</mat-label>
+                            <mat-radio-group formControlName="mccaste">
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Is Converted Caste</mat-label>
                               <mat-select formControlName="mccaste">
                                 <mat-option [value]="'Yes'">Yes</mat-option>
                                 <mat-option [value]="'No'">No</mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                            </div>
                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Mother Status</mat-label>
+                            <mat-radio-group formControlName="mIsAlive">
+                              <mat-radio-button value="Late">Late</mat-radio-button>
+                              <mat-radio-button value="Alive">Alive</mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Mother Status (Late/Alive)</mat-label>
                               <mat-select formControlName="mIsAlive">
                                 <mat-option [value]="'Late'">Late</mat-option>
                                 <mat-option [value]="'Alive'">Alive</mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                            </div>
                          </div>
                          <div class="row">
@@ -705,24 +987,28 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                          <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Employed in</mat-label>
+                            <mat-radio-group formControlName="employedin">
+                              <mat-radio-button value="Private">Private</mat-radio-button>
+                              <mat-radio-button value="Government">Government</mat-radio-button>
+                              <mat-radio-button value="UnEmployee">UnEmployee</mat-radio-button>
+                            </mat-radio-group>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Employed in</mat-label>
                               <mat-select formControlName="employedin">
                                 <mat-option [value]="'Private'">Private</mat-option>
                                 <mat-option [value]="'Government'">Government</mat-option>
                                 <mat-option [value]="'Unemployee'">Unemployee</mat-option>
                               </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Property Details</mat-label>
                               <input matInput formControlName="property" maxlength="20">
                             </mat-form-field>
-                           </div>
+                           </div> 
                         </div>
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
@@ -735,202 +1021,119 @@
                       <mat-step [stepControl]="HFormGroup6!">
                       <form [formGroup]="HFormGroup6!">
                         <ng-template matStepLabel >Looking For </ng-template>
+                        <h4><u>Looking For</u></h4>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Age Preference</mat-label>
+                              <mat-select formControlName="age" required>
+                                <mat-option [value]="'20-25'">20-25</mat-option>
+                                <mat-option [value]="'26-30'">26-30</mat-option>
+                                <mat-option [value]="'31-35'">31-35</mat-option>
+                                <mat-option [value]="'36-40'">36-40</mat-option>
+                                <mat-option [value]="'41-45'">41-45</mat-option>
+                                <mat-option [value]="'46-50'">46-50</mat-option>
+                                <mat-option [value]="'51-55'">51-55</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('age')?.hasError('required')">
+                                Age is required
+                              </mat-error>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Age</mat-label>
                               <input matInput formControlName="age" (input)="onInput($event)" required>
                               <mat-error *ngIf="HFormGroup6.get('age')?.hasError('required')">
                                 Age is required
                               </mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Height</mat-label>
                               <mat-select formControlName="lheight" required>
-                                <mat-option [value]="'4ft 6in'">4ft 6in</mat-option>
-                                <mat-option [value]="'4ft 7in'">4ft 7in</mat-option>
-                                <mat-option [value]="'4ft 8in'">4ft 8in</mat-option>
-                                <mat-option [value]="'4ft 9in'">4ft 9in</mat-option>
-                                <mat-option [value]="'4ft 10in'">4ft 10in</mat-option>
-                                <mat-option [value]="'5ft'">5ft</mat-option>
-                                <mat-option [value]="'5ft 1in'">5ft 1in</mat-option>
-                                <mat-option [value]="'5ft 2in'">5ft 2in</mat-option>
-                                <mat-option [value]="'5ft 3in'">5ft 3in</mat-option>
-                                <mat-option [value]="'5ft 4in'">5ft 4in</mat-option>
-                                <mat-option [value]="'5ft 5in'">5ft 5in</mat-option>
-                                <mat-option [value]="'5ft 6in'">5ft 6in</mat-option>
-                                <mat-option [value]="'5ft 7in'">5ft 7in</mat-option>
-                                <mat-option [value]="'5ft 8in'">5ft 8in</mat-option>
-                                <mat-option [value]="'5ft 9in'">5ft 9in</mat-option>
-                                <mat-option [value]="'5ft 10in'">5ft 10in</mat-option>  
-                                <mat-option [value]="'5ft 11in'">5ft 11in</mat-option>  
-                                <mat-option [value]="'6ft'">6ft</mat-option>
-                                <mat-option [value]="'6ft 1in'">6ft 1in</mat-option>
-                                <mat-option [value]="'6ft 2in'">6ft 2in</mat-option>
-                                <mat-option [value]="'6ft 3in'">6ft 3in</mat-option>
-                                <mat-option [value]="'6ft 4in'">6ft 4in</mat-option>
-                                <mat-option [value]="'6ft 5in'">6ft 5in</mat-option>
-                                <mat-option [value]="'6ft 6in'">6ft 6in</mat-option>
-                                <mat-option [value]="'6ft 7in'">6ft 7in</mat-option>
-                                <mat-option [value]="'6ft 8in'">6ft 8in</mat-option>
-                                <mat-option [value]="'6ft 9in'">6ft 9in</mat-option>
-                                <mat-option [value]="'6ft 10in'">6ft 10in</mat-option>  
-                                <mat-option [value]="'6ft 11in'">6ft 11in</mat-option>  
-                                <mat-option [value]="'7ft'">7ft</mat-option>  
+                                <mat-option [value]="'4-5.5'">4ft - 5.5ft</mat-option>
+                                <mat-option [value]="'5.6-6'">5.6ft - 6ft</mat-option>
+                                <mat-option [value]="'6.1-6.5'">6.1ft - 6.5ft</mat-option>
+                                <mat-option [value]="'6.6-7'">6.6ft - 7ft</mat-option>
                               </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('lheight')?.hasError('required')">
+                               Height is required
+                              </mat-error>
                             </mat-form-field>
                           </div>   
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
-                              <mat-label>Weight</mat-label>
+                              <mat-label>Weight(Kgs)</mat-label>
                               <mat-select formControlName="lweight" required>
-                                <mat-option [value]="'41 Kg'">41 Kg</mat-option>
-                                <mat-option [value]="'42 Kg'">42 Kg</mat-option>
-                                <mat-option [value]="'43 Kg'">43 Kg</mat-option>
-                                <mat-option [value]="'44 Kg'">44 Kg</mat-option>
-                                <mat-option [value]="'45 Kg'">45 Kg</mat-option>
-                                <mat-option [value]="'46 Kg'">46 Kg</mat-option>
-                                <mat-option [value]="'47 Kg'">47 Kg</mat-option>
-                                <mat-option [value]="'48 Kg'">48 Kg</mat-option>
-                                <mat-option [value]="'49 Kg'">49 Kg</mat-option>
-                                <mat-option [value]="'50 Kg'">50 Kg</mat-option>
-                                <mat-option [value]="'51 Kg'">51 Kg</mat-option>
-                                <mat-option [value]="'52 Kg'">52 Kg</mat-option>
-                                <mat-option [value]="'53 Kg'">53 Kg</mat-option>
-                                <mat-option [value]="'54 Kg'">54 Kg</mat-option>
-                                <mat-option [value]="'55 Kg'">55 Kg</mat-option>
-                                <mat-option [value]="'56 Kg'">56 Kg</mat-option>
-                                <mat-option [value]="'57 Kg'">57 Kg</mat-option>
-                                <mat-option [value]="'58 Kg'">58 Kg</mat-option>
-                                <mat-option [value]="'59 Kg'">59 Kg</mat-option>
-                                <mat-option [value]="'60 Kg'">60 Kg</mat-option>
-                                <mat-option [value]="'61 Kg'">61 Kg</mat-option>
-                                <mat-option [value]="'62 Kg'">62 Kg</mat-option>
-                                <mat-option [value]="'63 Kg'">63 Kg</mat-option>
-                                <mat-option [value]="'64 Kg'">64 Kg</mat-option>
-                                <mat-option [value]="'65 Kg'">65 Kg</mat-option>
-                                <mat-option [value]="'66 Kg'">66 Kg</mat-option>
-                                <mat-option [value]="'67 Kg'">67 Kg</mat-option>
-                                <mat-option [value]="'68 Kg'">68 Kg</mat-option>
-                                <mat-option [value]="'69 Kg'">69 Kg</mat-option>
-                                <mat-option [value]="'70 Kg'">70 Kg</mat-option>
-                                <mat-option [value]="'71 Kg'">71 Kg</mat-option>
-                                <mat-option [value]="'72 Kg'">72 Kg</mat-option>
-                                <mat-option [value]="'73 Kg'">73 Kg</mat-option>
-                                <mat-option [value]="'74 Kg'">74 Kg</mat-option>
-                                <mat-option [value]="'75 Kg'">75 Kg</mat-option>
-                                <mat-option [value]="'76 Kg'">76 Kg</mat-option>
-                                <mat-option [value]="'77 Kg'">77 Kg</mat-option>
-                                <mat-option [value]="'78 Kg'">78 Kg</mat-option>
-                                <mat-option [value]="'79 Kg'">79 Kg</mat-option>
-                                <mat-option [value]="'80 Kg'">80 Kg</mat-option>
-                                <mat-option [value]="'91 Kg'">91 Kg</mat-option>
-                                <mat-option [value]="'92 Kg'">92 Kg</mat-option>
-                                <mat-option [value]="'93 Kg'">93 Kg</mat-option>
-                                <mat-option [value]="'94 Kg'">94 Kg</mat-option>
-                                <mat-option [value]="'95 Kg'">95 Kg</mat-option>
-                                <mat-option [value]="'96 Kg'">96 Kg</mat-option>
-                                <mat-option [value]="'97 Kg'">97 Kg</mat-option>
-                                <mat-option [value]="'98 Kg'">98 Kg</mat-option>
-                                <mat-option [value]="'99 Kg'">99 Kg</mat-option>
-                                <mat-option [value]="'100 Kg'">100 Kg</mat-option>
-                                <mat-option [value]="'101 Kg'">101 Kg</mat-option>
-                                <mat-option [value]="'102 Kg'">102 Kg</mat-option>
-                                <mat-option [value]="'103 Kg'">103 Kg</mat-option>
-                                <mat-option [value]="'104 Kg'">104 Kg</mat-option>
-                                <mat-option [value]="'105 Kg'">105 Kg</mat-option>
-                                <mat-option [value]="'106 Kg'">106 Kg</mat-option>
-                                <mat-option [value]="'107 Kg'">107 Kg</mat-option>
-                                <mat-option [value]="'108 Kg'">108 Kg</mat-option>
-                                <mat-option [value]="'109 Kg'">109 Kg</mat-option>
-                                <mat-option [value]="'110 Kg'">110 Kg</mat-option>
-                                <mat-option [value]="'111 Kg'">111 Kg</mat-option>
-                                <mat-option [value]="'112 Kg'">112 Kg</mat-option>
-                                <mat-option [value]="'113 Kg'">113 Kg</mat-option>
-                                <mat-option [value]="'114 Kg'">114 Kg</mat-option>
-                                <mat-option [value]="'115 Kg'">115 Kg</mat-option>
-                                <mat-option [value]="'116 Kg'">116 Kg</mat-option>
-                                <mat-option [value]="'117 Kg'">117 Kg</mat-option>
-                                <mat-option [value]="'118 Kg'">118 Kg</mat-option>
-                                <mat-option [value]="'119 Kg'">119 Kg</mat-option>
-                                <mat-option [value]="'120 Kg'">120 Kg</mat-option>
-                                <mat-option [value]="'121 Kg'">121 Kg</mat-option>
-                                <mat-option [value]="'122 Kg'">122 Kg</mat-option>
-                                <mat-option [value]="'123 Kg'">123 Kg</mat-option>
-                                <mat-option [value]="'124 Kg'">124 Kg</mat-option>
-                                <mat-option [value]="'125 Kg'">125 Kg</mat-option>
-                                <mat-option [value]="'126 Kg'">126 Kg</mat-option>
-                                <mat-option [value]="'127 Kg'">127 Kg</mat-option>
-                                <mat-option [value]="'128 Kg'">128 Kg</mat-option>
-                                <mat-option [value]="'129 Kg'">129 Kg</mat-option>
-                                <mat-option [value]="'130 Kg'">130 Kg</mat-option>
-                                <mat-option [value]="'131 Kg'">131 Kg</mat-option>
-                                <mat-option [value]="'132 Kg'">132 Kg</mat-option>
-                                <mat-option [value]="'133 Kg'">133 Kg</mat-option>
-                                <mat-option [value]="'134 Kg'">134 Kg</mat-option>
-                                <mat-option [value]="'135 Kg'">135 Kg</mat-option>
-                                <mat-option [value]="'136 Kg'">136 Kg</mat-option>
-                                <mat-option [value]="'137 Kg'">137 Kg</mat-option>
-                                <mat-option [value]="'138 Kg'">138 Kg</mat-option>
-                                <mat-option [value]="'139 Kg'">139 Kg</mat-option>
-                                <mat-option [value]="'140 Kg'">140 Kg</mat-option>
+                                <mat-option [value]="'41-50'">41-50</mat-option>
+                                <mat-option [value]="'51-55'">51-55</mat-option>
+                                <mat-option [value]="'56-60'">56-60</mat-option>
+                                <mat-option [value]="'61-65'">61-65</mat-option>
+                                <mat-option [value]="'66-70'">66-70</mat-option>
+                                <mat-option [value]="'71-75'">71-75</mat-option>
+                                <mat-option [value]="'76-80'">76-80</mat-option>
+                                <mat-option [value]="'81-85'">81-85</mat-option>
+                                <mat-option [value]="'86-90'">86-90</mat-option>
+                                <mat-option [value]="'91-95'">91-95</mat-option>
+                                <mat-option [value]="'96-100'">96-100</mat-option>
+                                <mat-option [value]="'101-105'">101-105</mat-option>
+                                <mat-option [value]="'106-110'">106-110</mat-option>
+                                <mat-option [value]="'111-115'">111-115</mat-option>
+                                <mat-option [value]="'116-120'">116-120</mat-option>
+                                <mat-option [value]="'121-125'">121-125</mat-option>
+                                <mat-option [value]="'126-130'">126-130</mat-option>
+                                <mat-option [value]="'131-135'">131-135</mat-option>
+                                <mat-option [value]="'136-140'">136-140</mat-option>
                               </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('lweight')?.hasError('required')">
+                                Weight is required
+                               </mat-error>
                           </mat-form-field>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Family Status</mat-label>
+                              <mat-select formControlName="lfstatus" required>
+                                <mat-option [value]="'Very Rich'">Very Rich</mat-option>
+                                <mat-option [value]="'Rich'">Rich</mat-option>
+                                <mat-option [value]="'Medium'">Medium</mat-option>
+                                <mat-option [value]="'Poor'">Poor</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('lfstatus')?.hasError('required')">
+                                Family Status is required
+                              </mat-error>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Family Status</mat-label>
                               <input matInput formControlName="lfstatus" required maxlength="20">
                               <mat-error *ngIf="HFormGroup6.get('lfstatus')?.hasError('required')">
                                 Family Status is required
                               </mat-error>
-                            </mat-form-field>  
-                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
-                              <mat-label>Ready for Inter-caste Marriage</mat-label>
-                              <mat-select formControlName="intercaste" required>
-                                <mat-option [value]="'Yes'">Yes</mat-option>
-                                <mat-option [value]="'No'">No</mat-option>
-                              </mat-select>
-                              <mat-error *ngIf="HFormGroup6.get('intercaste')?.hasError('required')">
-                                Inter-Case Marriage is required
-                              </mat-error>
-                            </mat-form-field>
+                            </mat-form-field>   -->
                            </div>
                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
-                              <mat-label>Khuja Dosham</mat-label>
-                              <mat-select formControlName="ldosham" required>
-                                <mat-option [value]="'Yes'">Yes</mat-option>
-                                <mat-option [value]="'No'">No</mat-option>
-                                <mat-option [value]="'Dont Know'">Dont Know</mat-option>
+                              <mat-label>Complexion</mat-label>
+                              <mat-select formControlName="lcomplexion" required>
+                                <mat-option [value]="'VeryFair'">VeryFair</mat-option>
+                                <mat-option [value]="'Fair'">Fair</mat-option>
+                                <mat-option [value]="'Medium'">Medium</mat-option>
+                                <mat-option [value]="'Dark'">Dark</mat-option>
                               </mat-select>
-                              <mat-error *ngIf="HFormGroup6.get('ldosham')?.hasError('required')">
-                                Khuja Dosham is required
+                              <mat-error *ngIf="HFormGroup6.get('lcomplexion')?.hasError('required')">
+                                Complexion is required
                               </mat-error>
-                            </mat-form-field>
-                           </div>
-                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
-                              <mat-label>Passport</mat-label>
-                              <mat-select formControlName="lpassport" required>
-                                <mat-option [value]="'Yes'">Yes</mat-option>
-                                <mat-option [value]="'No'">No</mat-option>
-                              </mat-select>
-                              <mat-error *ngIf="HFormGroup6.get('lpassport')?.hasError('required')">
-                                Passport is required
+                            </mat-form-field> 
+                            <!-- <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Complexion</mat-label>
+                              <input matInput formControlName="lcomplexion" required maxlength="20">
+                              <mat-error *ngIf="HFormGroup6.get('lcomplexion')?.hasError('required')">
+                                Complexion is required
                               </mat-error>
-                            </mat-form-field>   
-                           </div>
-                        </div>
-                        <div class="row">
+                            </mat-form-field>      -->
+                          </div>
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Qualification</mat-label>
@@ -942,8 +1145,85 @@
                               </mat-error>
                              </mat-form-field> 
                           </div>
+                        </div>
+                        <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Ready for Inter-caste Marriage</mat-label>
+                            <mat-radio-group formControlName="intercaste" required>
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="HFormGroup6.get('intercaste')?.hasError('required')">
+                              Inter-Case Marriage is required
+                            </mat-error>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Ready for Inter-caste Marriage</mat-label>
+                              <mat-select formControlName="intercaste" required>
+                                <mat-option [value]="'Yes'">Yes</mat-option>
+                                <mat-option [value]="'No'">No</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('intercaste')?.hasError('required')">
+                                Inter-Case Marriage is required
+                              </mat-error>
+                            </mat-form-field> -->
+                           </div>
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Passport</mat-label>
+                            <mat-radio-group formControlName="lpassport" required>
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="HFormGroup6.get('lpassport')?.hasError('required')">
+                              Passport is required
+                            </mat-error>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Passport</mat-label>
+                              <mat-select formControlName="lpassport" required>
+                                <mat-option [value]="'Yes'">Yes</mat-option>
+                                <mat-option [value]="'No'">No</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('lpassport')?.hasError('required')">
+                                Passport is required
+                              </mat-error>
+                            </mat-form-field>    -->
+                           </div>
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Khuja Dosham</mat-label>
+                            <mat-radio-group formControlName="ldosham" required>
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                              <mat-radio-button value="Dont Know">Dont Know</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="HFormGroup6.get('ldosham')?.hasError('required')">
+                              Khuja Dosham is required
+                            </mat-error>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Khuja Dosham</mat-label>
+                              <mat-select formControlName="ldosham" required>
+                                <mat-option [value]="'Yes'">Yes</mat-option>
+                                <mat-option [value]="'No'">No</mat-option>
+                                <mat-option [value]="'Dont Know'">Dont Know</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup6.get('ldosham')?.hasError('required')">
+                                Khuja Dosham is required
+                              </mat-error>
+                            </mat-form-field> -->
+                           </div>
+                       
+                        </div>
+                        <div class="row">
+                          
+                          <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Employed in</mat-label>
+                            <mat-radio-group formControlName="lemployedin" required>
+                              <mat-radio-button value="Private">Private</mat-radio-button>
+                              <mat-radio-button value="Government">Government</mat-radio-button>
+                              <mat-radio-button value="UnEmployee">UnEmployee</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="HFormGroup6.get('lemployedin')?.hasError('required')">
+                              Employed in required
+                            </mat-error>
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Employed in</mat-label>
                               <mat-select formControlName="lemployedin" required>
                                 <mat-option [value]="'Private'">Private</mat-option>
@@ -953,19 +1233,66 @@
                               <mat-error *ngIf="HFormGroup6.get('lemployedin')?.hasError('required')">
                                 Employed in required
                               </mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
                           </div>  
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
-                              <mat-label>Complexion</mat-label>
-                              <input matInput formControlName="lcomplexion" required maxlength="20">
-                              <mat-error *ngIf="HFormGroup6.get('lcomplexion')?.hasError('required')">
-                                Complexion is required
-                              </mat-error>
-                            </mat-form-field>     
-                          </div>
+                          
                         </div>
                         <div class="row">
+                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Smoking Habits</mat-label>
+                              <mat-radio-group formControlName="lsmoke" required>
+                                <mat-radio-button value="No">No</mat-radio-button>
+                                <mat-radio-button value="Regular">Regular</mat-radio-button>
+                                <mat-radio-button value="Occasionally">Occasionally</mat-radio-button>
+                              </mat-radio-group>
+                              <mat-error *ngIf="HFormGroup6.get('lsmoke')?.hasError('required')">
+                                Smoking Habits is required
+                              </mat-error>    
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Smoking Habits</mat-label>
+                              <mat-select formControlName="smoke">
+                                <mat-option [value]="'No'">No</mat-option>
+                                <mat-option [value]="'Yes'">Yes</mat-option>
+                                <mat-option [value]="'Occasionally'">Occasionally</mat-option>
+                              </mat-select>
+                            </mat-form-field> -->
+                          </div>
+                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                            <mat-label>Drinking Habits</mat-label>
+                            <mat-radio-group formControlName="ldrink" required>
+                              <mat-radio-button value="No">No</mat-radio-button>
+                              <mat-radio-button value="Regular">Regular</mat-radio-button>
+                              <mat-radio-button value="Occasionally">Occasionally</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="HFormGroup6.get('ldrink')?.hasError('required')">
+                              Drinking Habits is required
+                            </mat-error>   
+                            <!-- <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Drinking Habits</mat-label>
+                              <mat-select formControlName="drink">
+                                <mat-option [value]="'No'">No</mat-option>
+                                <mat-option [value]="'Yes'">Yes</mat-option>
+                                <mat-option [value]="'Occasionally'">Occasionally</mat-option>
+                              </mat-select>
+                            </mat-form-field> -->
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                              <mat-label>Eating Habits</mat-label>
+                              <mat-radio-group formControlName="leating" required>
+                                <mat-radio-button value="Vegetarian">Vegetarian</mat-radio-button>
+                                <mat-radio-button value="Non Vegetarian">Non Vegetarian</mat-radio-button>
+                                <mat-radio-button value="Eggetarian">Eggetarian</mat-radio-button>
+                              </mat-radio-group>
+                              <mat-error *ngIf="HFormGroup6.get('leating')?.hasError('required')">
+                                Eating Habits is required
+                              </mat-error> 
+                              </div>          
+                          </div>  
+
+
+                        <!-- <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Smoking Habits</mat-label>
@@ -1005,7 +1332,7 @@
                               </mat-error>
                             </mat-form-field> 
                           </div>
-                        </div>
+                        </div> -->
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
                           <button mat-raised-button matStepperNext color="primary"
@@ -1084,14 +1411,14 @@
                               </mat-form-field>
                             </div>
                           
-                          <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <label>Upload Profile Picture</label>
                 <input type="file" id="photo" name="photo" formControlName="photo" (change)="onFileSelected($event)"  accept="image/*">  
                           </div>
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <label>Upload ID Proof Document</label>
-                            <input type="file" id="idproof" name="idproof" formControlName="idproof" (change)="onIdFileSelected($event)"  accept="image/*">   
-                          </div> -->
+                            <input type="file" id="idproof" name="idproof" formControlName="idproof" (change)="onFileSelected($event)"  accept="image/*">   
+                          </div>
                         </div>
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
