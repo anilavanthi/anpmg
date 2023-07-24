@@ -304,7 +304,7 @@ export class CreatecustomerComponent
     TableExportUtil.exportToExcel(exportData, 'excel');
   }
 
-  redirectToPage(rowId: number) {
+  redirectToPage(rowId: number | undefined) {
     this.router.navigate(['/admin/customer/about-customer', rowId]);
   // Add more conditions for other pages if needed
 }

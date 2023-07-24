@@ -88,39 +88,13 @@
                               <mat-error *ngIf="HFormGroup1.get('dob')?.hasError('required')">
                                 Please select date
                               </mat-error>
+                              <mat-error *ngIf="HFormGroup1.get('dob')?.hasError('invalidAge')">
+                                Age should be between 18 and 70 years
+                              </mat-error>
                             </mat-form-field>
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Marital Status</mat-label>
-                            <mat-select formControlName="maritalStatus" required>
-                              <mat-option [value]="'Unmarried'">Unmarried</mat-option>
-                              <mat-option [value]="'Widowed'">Widowed</mat-option>
-                              <mat-option [value]="'Divorced'">Divorced</mat-option>
-                              <mat-option [value]="'Waiting for Divorce'">Waiting for Divorce</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="HFormGroup1.get('maritalStatus')?.hasError('required')">
-                              Marital Status is required
-                            </mat-error>
-                          </mat-form-field>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                          <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Application for</mat-label>
-                            <mat-select formControlName="applicationFor" required>
-                              <mat-option [value]="'Myself'">Myself</mat-option>
-                              <mat-option [value]="'Relative'">Relative</mat-option>
-                              <mat-option [value]="'Friend'">Friend</mat-option>
-                              <mat-option [value]="'Son'">Son</mat-option>
-                              <mat-option [value]="'Daughter'">Daughter</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="HFormGroup1.get('applicationFor')?.hasError('required')">
-                              Application for is required
-                            </mat-error>
-                          </mat-form-field>
-                        </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Height</mat-label>
@@ -161,9 +135,6 @@
                             </mat-error>
                           </mat-form-field>
                         </div>
-                       
-                        </div>
-                        <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Weight</mat-label>
@@ -266,6 +237,62 @@
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Application for</mat-label>
+                            <mat-select formControlName="applicationFor" required>
+                              <mat-option [value]="'Myself'">Myself</mat-option>
+                              <mat-option [value]="'Relative'">Relative</mat-option>
+                              <mat-option [value]="'Friend'">Friend</mat-option>
+                              <mat-option [value]="'Son'">Son</mat-option>
+                              <mat-option [value]="'Daughter'">Daughter</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="HFormGroup1.get('applicationFor')?.hasError('required')">
+                              Application for is required
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        </div>
+                        <div class="bordered-container" *ngIf="HFormGroup1?.get('applicationFor')?.value !== 'Myself'">
+                          <div class="row"  >
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Name of application filling person</mat-label>
+                                <input matInput formControlName="nameofappfilling" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput formControlName="nameofappmobile" maxlength="10" (input)="onInput($event)">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Relation with applicant</mat-label>
+                                <input matInput formControlName="nameofapprelation" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Marital Status</mat-label>
+                              <mat-select formControlName="maritalStatus" required>
+                                <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                <mat-option [value]="'Widowed'">Widowed</mat-option>
+                                <mat-option [value]="'Divorced'">Divorced</mat-option>
+                                <mat-option [value]="'Waiting for Divorce'">Waiting for Divorce</mat-option>
+                                <mat-option [value]="'No Divorce'">No Divorce</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup1.get('maritalStatus')?.hasError('required')">
+                                Marital Status is required
+                              </mat-error>
+                            </mat-form-field>
+                          </div>   
+
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Complexion</mat-label>
                             <mat-select formControlName="complexion">
                               <mat-option [value]="'VeryFair'">VeryFair</mat-option>
@@ -300,6 +327,239 @@
                           </mat-form-field>   -->
                           </div>
                         </div>
+                        <div class="bordered-container"  *ngIf="HFormGroup1?.get('maritalStatus')?.value === 'Divorced'">
+                         <div class="row">
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Date Of Marriage</mat-label>
+                              <input matInput [matDatepicker]="pickerdateofmarriage" formControlName="dateOfMarriage">
+                              <mat-datepicker-toggle matSuffix [for]="pickerdateofmarriage"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerdateofmarriage></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Date Of Divorce</mat-label>
+                              <input matInput [matDatepicker]="pickerdateofdivorce" formControlName="dateOfDivorce">
+                              <mat-datepicker-toggle matSuffix [for]="pickerdateofdivorce"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerdateofdivorce></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Reason For Divorce</mat-label>
+                              <input matInput formControlName="reasonDivorce" maxlength="15">
+                            </mat-form-field> 
+                          </div>
+                         </div> 
+                         <div class="row">
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                          <label>Upload Divorce Certificate</label>
+                <!-- <input type="file" id="photo" name="photo" formControlName="photo" (change)="onFileSelected($event)"  accept="image/*">   -->
+                         </div>
+                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                          <mat-label>Having Children </mat-label>
+                        <mat-radio-group formControlName="divorceChildren">
+                          <mat-radio-button value="Yes">Yes</mat-radio-button>
+                          <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                        </div>
+                          </div>
+                          <div class="bordered-container" *ngIf="HFormGroup1?.get('divorceChildren')?.value === 'Yes'">
+                            <div class="row">
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Number of Sons</mat-label>
+                                  <input matInput formControlName="divorcenoofsons" (input)="onInput($event)" (change)="updateDivorceNoOfSonsArray()" maxlength="1">
+                                </mat-form-field>
+                               </div>   
+                             </div>
+    
+                             <div *ngIf="HFormGroup1?.get('divorcenoofsons')?.value > 0" formArrayName="divorceSonsArray">
+                              <div class="bordered-container" *ngFor="let divorceSon of divorceSonsArray.controls; let i = index" [formGroupName]="i">
+                                <div class="row">
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Name</mat-label>
+                                      <input matInput [formControl]="getDivroceSonControl(i, 'divorceSonName')" maxlength="20">
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Age</mat-label>
+                                      <input matInput [formControl]="getDivroceSonControl(i, 'divorceSonAge')" (input)="onInput($event)" maxlength="2">
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getDivroceSonControl(i, 'divorceSonAge')?.value >= 18" >
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Martial Status</mat-label>
+                                      <mat-select [formControl]="getDivroceSonControl(i, 'divorceSonMStatus')">
+                                        <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                        <mat-option [value]="'Married'">Married</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            
+                             <div class="row">
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Number of Daughters</mat-label>
+                                  <input matInput formControlName="divorcenoofdaughters" (input)="onInput($event)" (change)="updateDivorceNoOfDaughtersArray()" maxlength="1">
+                                </mat-form-field>
+                               </div>
+                             </div>
+                             <br>
+                             
+                             <div *ngIf="HFormGroup1?.get('divorcenoofdaughters')?.value > 0" formArrayName="divorceDaughtersArray">
+                              <div class="bordered-container" *ngFor="let daughter of divorceDaughtersArray.controls; let i = index" [formGroupName]="i">
+                                <div class="row">
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Name</mat-label>
+                                      <input matInput [formControl]="getDivroceDaughterControl(i, 'divorceDaughterName')" maxlength="20">
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Age</mat-label>
+                                      <input matInput [formControl]="getDivroceDaughterControl(i, 'divorceDaughterAge')" (input)="onInput($event)" maxlength="2">
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getDivroceDaughterControl(i, 'divorceDaughterAge')?.value >= 18" >
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Martial Status</mat-label>
+                                      <mat-select [formControl]="getDivroceDaughterControl(i, 'divorceDaughterMStatus')">
+                                        <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                        <mat-option [value]="'Married'">Married</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br>  
+                          </div> 
+                        </div>  
+                        <br>
+
+                        <div class="bordered-container"  *ngIf="HFormGroup1?.get('maritalStatus')?.value === 'Widowed'">
+                          <div class="row">
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                             <mat-form-field class="example-full-width mb-3" appearance="outline">
+                               <mat-label>Date Of Marriage</mat-label>
+                               <input matInput [matDatepicker]="pickerdateofmarriagewidowed" formControlName="dateOfMarriageWidowed">
+                               <mat-datepicker-toggle matSuffix [for]="pickerdateofmarriagewidowed"></mat-datepicker-toggle>
+                               <mat-datepicker #pickerdateofmarriagewidowed></mat-datepicker>
+                             </mat-form-field>
+                           </div>
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                             <mat-form-field class="example-full-width mb-3" appearance="outline">
+                               <mat-label>Date Of Death</mat-label>
+                               <input matInput [matDatepicker]="pickerdateofdeath" formControlName="dateOfDeath">
+                               <mat-datepicker-toggle matSuffix [for]="pickerdateofdeath"></mat-datepicker-toggle>
+                               <mat-datepicker #pickerdateofdeath></mat-datepicker>
+                             </mat-form-field>
+                           </div>
+                          </div> 
+                          <div class="row">
+                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                           <label>Upload Death Certificate</label>
+                 <!-- <input type="file" id="photo" name="photo" formControlName="photo" (change)="onFileSelected($event)"  accept="image/*">   -->
+                          </div>
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                           <mat-label>Having Children </mat-label>
+                         <mat-radio-group formControlName="widowedChildren">
+                           <mat-radio-button value="Yes">Yes</mat-radio-button>
+                           <mat-radio-button value="No">No</mat-radio-button>
+                         </mat-radio-group>
+                         </div>
+                           </div>
+                           <div class="bordered-container" *ngIf="HFormGroup1?.get('widowedChildren')?.value === 'Yes'">
+                             <div class="row">
+                               <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                 <mat-form-field class="example-full-width" appearance="outline">
+                                   <mat-label>Number of Sons</mat-label>
+                                   <input matInput formControlName="widowednoofsons" (input)="onInput($event)" (change)="updateWidowedNoOfSonsArray()" maxlength="1">
+                                 </mat-form-field>
+                                </div>   
+                              </div>
+     
+                              <div *ngIf="HFormGroup1?.get('widowednoofsons')?.value > 0" formArrayName="widowedSonsArray">
+                               <div class="bordered-container" *ngFor="let widowedSon of widowedSonsArray.controls; let i = index" [formGroupName]="i">
+                                 <div class="row">
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Name</mat-label>
+                                       <input matInput [formControl]="getWidowedSonControl(i, 'widowedSonName')" maxlength="20">
+                                     </mat-form-field>
+                                   </div>
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Age</mat-label>
+                                       <input matInput [formControl]="getWidowedSonControl(i, 'widowedSonAge')" (input)="onInput($event)" maxlength="2">
+                                     </mat-form-field>
+                                   </div>
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getWidowedSonControl(i, 'widowedSonAge')?.value >= 18" >
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Martial Status</mat-label>
+                                       <mat-select [formControl]="getWidowedSonControl(i, 'widowedSonMStatus')">
+                                         <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                         <mat-option [value]="'Married'">Married</mat-option>
+                                       </mat-select>
+                                     </mat-form-field>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                             <br>
+                             
+                              <div class="row">
+                               <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                 <mat-form-field class="example-full-width" appearance="outline">
+                                   <mat-label>Number of Daughters</mat-label>
+                                   <input matInput formControlName="widowednoofdaughters" (input)="onInput($event)" (change)="updateWidowedNoOfDaughtersArray()" maxlength="1">
+                                 </mat-form-field>
+                                </div>
+                              </div>
+                              <br>
+                              
+                              <div *ngIf="HFormGroup1?.get('widowednoofdaughters')?.value > 0" formArrayName="widowedDaughtersArray">
+                               <div class="bordered-container" *ngFor="let daughter of widowedDaughtersArray.controls; let i = index" [formGroupName]="i">
+                                 <div class="row">
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Name</mat-label>
+                                       <input matInput [formControl]="getWidowedDaughterControl(i, 'widowedDaughterName')" maxlength="20">
+                                     </mat-form-field>
+                                   </div>
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Age</mat-label>
+                                       <input matInput [formControl]="getWidowedDaughterControl(i, 'widowedDaughterAge')" (input)="onInput($event)" maxlength="2">
+                                     </mat-form-field>
+                                   </div>
+                                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getWidowedDaughterControl(i, 'widowedDaughterAge')?.value >= 18" >
+                                     <mat-form-field class="example-full-width" appearance="outline">
+                                       <mat-label>Martial Status</mat-label>
+                                       <mat-select [formControl]="getWidowedDaughterControl(i, 'widowedDaughterMStatus')">
+                                         <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                         <mat-option [value]="'Married'">Married</mat-option>
+                                       </mat-select>
+                                     </mat-form-field>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                             <br>  
+                           </div> 
+                         </div>  
+                         <br>
+
+
                         <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                           <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -408,12 +668,13 @@
                           </div>
                           </div>
                           <div class="row">
-                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
                             <mat-label>Eating Habits</mat-label>
                             <mat-radio-group formControlName="eating">
                               <mat-radio-button value="Vegetarian">Vegetarian</mat-radio-button>
                               <mat-radio-button value="Non Vegetarian">Non Vegetarian</mat-radio-button>
                               <mat-radio-button value="Eggetarian">Eggetarian</mat-radio-button>
+                              <mat-radio-button value="Not-Particular">Not-Particular</mat-radio-button>
                             </mat-radio-group>          
                         </div>
                           <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
@@ -580,21 +841,35 @@
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Religion</mat-label>
                               <mat-select formControlName="religion" required>
-                                <mat-option *ngFor="let option of religions$ | async" [value]="option.id">{{ option.name }}</mat-option>
+                                <mat-option *ngFor="let option of religions$ | async" [value]="option.name">{{ option.name }}</mat-option>
                               </mat-select>
                               <mat-error *ngIf="HFormGroup3.get('religion')?.hasError('required')">
                                 Select Any Religion
                               </mat-error>
                              </mat-form-field>
                           </div>
+                          </div>
+                          <div class="bordered-container"  *ngIf="HFormGroup3?.get('religion')?.value === 'Hindu'">
+                          <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width mb-3" appearance="outline">
                               <mat-label>Caste</mat-label>
-                              <mat-select formControlName="caste" required>
+                              <mat-select formControlName="caste" (selectionChange)="onCasteChange($event)">
                                 <mat-option *ngFor="let option of castes$ | async" [value]="option.id">{{ option.name }}</mat-option>
                               </mat-select>
                               <mat-error *ngIf="HFormGroup3.get('caste')?.hasError('required')">
                                 Select Any Caste
+                              </mat-error>
+                             </mat-form-field>
+                          </div>   
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Sub Caste</mat-label>
+                              <mat-select formControlName="subcaste">
+                                <mat-option *ngFor="let option of subcastes$ | async" [value]="option.id">{{ option.name }}</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="HFormGroup3.get('subcaste')?.hasError('required')">
+                                Select Any Sub Caste
                               </mat-error>
                              </mat-form-field>
                           </div>   
@@ -714,6 +989,8 @@
                             </mat-form-field> -->
                            </div>
                          </div>
+                         </div>
+                         <br>
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
                           <button mat-raised-button matStepperNext color="primary"
@@ -799,24 +1076,24 @@
                             </mat-radio-group>
                            </div>
                         </div>
-                        <!-- <div *ngIf="fIsAliveControl.value === 'Alive'">
-                          <div class="row">
+                        <div class="bordered-container" *ngIf="HFormGroup4?.get('fIsAlive')?.value === 'Alive'">
+                          <div class="row"  >
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Health Condition</mat-label>
-                                <input matInput formControlName="f11" maxlength="20">
+                                <input matInput formControlName="fatherHealth" maxlength="20">
                               </mat-form-field>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Working Sector</mat-label>
-                                <input matInput formControlName="f12" maxlength="20">
+                                <input matInput formControlName="fatherWSector" maxlength="20">
                               </mat-form-field>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Mobile Number</mat-label>
-                                <input matInput formControlName="f13" maxlength="20">
+                                <input matInput formControlName="fatherMobile" maxlength="10" (input)="onInput($event)">
                               </mat-form-field>
                             </div>
                           </div>
@@ -824,19 +1101,19 @@
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Profession</mat-label>
-                                <input matInput formControlName="f14" maxlength="20">
+                                <input matInput formControlName="fatherProfession" maxlength="20">
                               </mat-form-field>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Address</mat-label>
-                                <input matInput formControlName="f15" maxlength="20">
+                                <textarea matInput formControlName="fatherAddress" placeholder="Ex. 1 Main St, New York, NY" maxlength="500"></textarea>
                               </mat-form-field>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Annual Income</mat-label>
-                                <input matInput formControlName="f16" maxlength="20">
+                                <input matInput formControlName="fatherAnnualIncome" maxlength="20">
                               </mat-form-field>
                             </div>
                           </div>
@@ -844,18 +1121,18 @@
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Property Details</mat-label>
-                                <input matInput formControlName="f17" maxlength="20">
+                                <input matInput formControlName="fatherProperty" maxlength="20">
                               </mat-form-field>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                               <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Pension</mat-label>
-                                <input matInput formControlName="f18" maxlength="20">
+                                <input matInput formControlName="fatherPension" maxlength="20">
                               </mat-form-field>
                             </div>
                           </div>
-                        </div> -->
-                        
+                        </div>
+                        <br>
                         <!-- <div *ngIf="ShowSubForm1.value === 'Alive'">
                           <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Sub Form Field</mat-label>
@@ -919,6 +1196,65 @@
                             </mat-form-field> -->
                            </div>
                          </div>
+
+                         <div class="bordered-container" *ngIf="HFormGroup4?.get('mIsAlive')?.value === 'Alive'">
+                          <div class="row"  >
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Health Condition</mat-label>
+                                <input matInput formControlName="motherHealth" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Working Sector</mat-label>
+                                <input matInput formControlName="motherWSector" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput formControlName="motherMobile" maxlength="10" (input)="onInput($event)">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Profession</mat-label>
+                                <input matInput formControlName="motherProfession" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Address</mat-label>
+                                <textarea matInput formControlName="motherAddress" placeholder="Ex. 1 Main St, New York, NY" maxlength="500"></textarea>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Annual Income</mat-label>
+                                <input matInput formControlName="motherAnnualIncome" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Property Details</mat-label>
+                                <input matInput formControlName="motherProperty" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Pension</mat-label>
+                                <input matInput formControlName="motherPension" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                        <br>  
+
                          <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
@@ -934,21 +1270,106 @@
                                 ></textarea>
                             </mat-form-field>
                            </div>
-                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                         </div>
+
+                         <div class="row">
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Number of Brothers</mat-label>
-                              <input matInput formControlName="nobrothers" (input)="onInput($event)" maxlength="2">
+                              <input matInput formControlName="nobrothers" (input)="onInput($event)" (change)="updateBrothersArray()" maxlength="1">
                             </mat-form-field>
-                           </div>
+                           </div>   
                          </div>
+
+                         <div *ngIf="HFormGroup4?.get('nobrothers')?.value > 0" formArrayName="brothersArray">
+                          <div class="bordered-container" *ngFor="let brother of brothersArray.controls; let i = index" [formGroupName]="i">
+                            <div class="row">
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Name of Brother</mat-label>
+                                  <input matInput [formControl]="getBrotherControl(i, 'brotherName')" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Age</mat-label>
+                                  <input matInput [formControl]="getBrotherControl(i, 'brotherAge')" (input)="onInput($event)" maxlength="2">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getBrotherControl(i, 'brotherAge')?.value >= 18" >
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Martial Status</mat-label>
+                                  <mat-select [formControl]="getBrotherControl(i, 'brotherMStatus')">
+                                    <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                    <mat-option [value]="'Married'">Married</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-label>Elder or Younger</mat-label>
+                                <mat-radio-group [formControl]="getBrotherControl(i, 'brotherEYounger')">
+                                  <mat-radio-button value="Yes">Yes</mat-radio-button>
+                                  <mat-radio-button value="No">No</mat-radio-button>
+                                </mat-radio-group>
+                                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Elder or Younger</mat-label>
+                                  <input matInput [formControl]="getBrotherControl(i, 'brotherEYounger')" maxlength="20">
+                                </mat-form-field> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        
                          <div class="row">
                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Number of Sisters</mat-label>
-                              <input matInput formControlName="nosisters" (input)="onInput($event)" maxlength="2">
+                              <input matInput formControlName="nosisters" (input)="onInput($event)" (change)="updateSistersArray()" maxlength="1">
                             </mat-form-field>
                            </div>
                          </div>
+                         <br>
+                         
+                         <div *ngIf="HFormGroup4?.get('nosisters')?.value > 0" formArrayName="sistersArray">
+                          <div class="bordered-container" *ngFor="let sister of sistersArray.controls; let i = index" [formGroupName]="i">
+                            <div class="row">
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Name of Sister</mat-label>
+                                  <input matInput [formControl]="getSisterControl(i, 'sisterName')" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Age</mat-label>
+                                  <input matInput [formControl]="getSisterControl(i, 'sisterAge')" (input)="onInput($event)" maxlength="2">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2" *ngIf="getSisterControl(i, 'sisterAge')?.value >= 18" >
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Martial Status</mat-label>
+                                  <mat-select [formControl]="getSisterControl(i, 'sisterMStatus')">
+                                    <mat-option [value]="'Unmarried'">Unmarried</mat-option>
+                                    <mat-option [value]="'Married'">Married</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                <mat-label>Elder or Younger</mat-label>
+                                <mat-radio-group [formControl]="getSisterControl(i, 'sisterEYounger')">
+                                  <mat-radio-button value="Yes">Yes</mat-radio-button>
+                                  <mat-radio-button value="No">No</mat-radio-button>
+                                </mat-radio-group>
+                                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Elder or Younger</mat-label>
+                                  <input matInput [formControl]="getBrotherControl(i, 'brotherEYounger')" maxlength="20">
+                                </mat-form-field> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
                           <button mat-raised-button matStepperNext color="primary"
@@ -987,6 +1408,12 @@
                           </div>
                         </div>
                         <div class="row">
+                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Property Details</mat-label>
+                              <input matInput formControlName="property" maxlength="20">
+                            </mat-form-field>
+                           </div> 
                           <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
                             <mat-label>Employed in</mat-label>
                             <mat-radio-group formControlName="employedin">
@@ -1002,14 +1429,167 @@
                                 <mat-option [value]="'Unemployee'">Unemployee</mat-option>
                               </mat-select>
                             </mat-form-field> -->
-                           </div>
-                           <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
-                            <mat-form-field class="example-full-width" appearance="outline">
-                              <mat-label>Property Details</mat-label>
-                              <input matInput formControlName="property" maxlength="20">
-                            </mat-form-field>
-                           </div> 
+                           </div>   
                         </div>
+                        <div class="bordered-container" *ngIf="HFormGroup5?.get('employedin')?.value === 'Private' || HFormGroup5?.get('employedin')?.value === 'Government'">
+                          <div class="row"  >
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Designation</mat-label>
+                                <input matInput formControlName="edesignation" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Profession</mat-label>
+                                <input matInput formControlName="eprofession" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-label>Working Location</mat-label>
+                              <mat-radio-group formControlName="eworkinglocation">
+                                <mat-radio-button value="India">India</mat-radio-button>
+                                <mat-radio-button value="Abroad">Abroad</mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                          </div>
+
+                          <div class="bordered-container" *ngIf="HFormGroup5?.get('eworkinglocation')?.value === 'India'">
+                            <div class="row"  >
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Working State</mat-label>
+                                  <input matInput formControlName="eindiastate" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>City</mat-label>
+                                  <input matInput formControlName="eindiacity" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Address</mat-label>
+                                  <textarea matInput formControlName="eindiaaddress" placeholder="Ex. 1 Main St, New York, NY" maxlength="500"
+                                  ></textarea>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row"  >
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Company Name</mat-label>
+                                  <input matInput formControlName="eindiacompanyname" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Working Since</mat-label>
+                                  <input matInput formControlName="eindiaworkingsince" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Total Experience in Years</mat-label>
+                                  <input matInput formControlName="eindiatotalexperience" maxlength="2" (input)="onInput($event)">
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Passport Number</mat-label>
+                                  <input matInput formControlName="eindiapassport" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="bordered-container" *ngIf="HFormGroup5?.get('eworkinglocation')?.value === 'Abroad'">
+                            <div class="row"  >
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Country</mat-label>
+                                  <input matInput formControlName="eabroadcountry" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>State</mat-label>
+                                  <input matInput formControlName="eabroadstate" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Visa Type</mat-label>
+                                  <input matInput formControlName="eabroadtype" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row"  >
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Passport Number</mat-label>
+                                  <input matInput formControlName="eabroadpassport" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Valid From</mat-label>
+                                  <input matInput formControlName="eabroadvalidfrom" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Valid To</mat-label>
+                                  <input matInput formControlName="eabroadvalidto" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Working Company Name</mat-label>
+                                  <input matInput formControlName="eabroadworkingcompanyname" maxlength="20">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Company's Present Address</mat-label>
+                                  <textarea matInput formControlName="eabroadaddress" placeholder="Ex. 1 Main St, New York, NY" maxlength="500"
+                                  ></textarea>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row"  >
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Colleague's Name</mat-label>
+                                <input matInput formControlName="ecolleguename" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Colleague's Mobile No</mat-label>
+                                <input matInput formControlName="ecolleguemobileno" maxlength="10" (input)="onInput($event)">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Annual Income</mat-label>
+                                <input matInput formControlName="eannualincome" maxlength="20">
+                              </mat-form-field>
+                            </div>
+                            
+                          </div>
+
+                        </div>
+                       
+                        <br>  
+                        
                         <div>
                           <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
                           <button mat-raised-button matStepperNext color="primary"

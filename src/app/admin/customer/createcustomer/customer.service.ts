@@ -53,6 +53,7 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
     this.dialogData = customer;
     const formData: FormData = new FormData();
     const jsonCustomer = JSON.stringify(customer);
+    console.log(jsonCustomer);
     formData.append('photo', photo);
     formData.append('idproof',idFile);
     formData.append('data', jsonCustomer);

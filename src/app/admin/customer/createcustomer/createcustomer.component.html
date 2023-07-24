@@ -272,7 +272,7 @@
                           <span class="badge badge-solid-purple">Created Time : {{customer?.createdon | date:'MM/dd/yyyy HH:mm:ss'}} </span>
                         </div>
                         <div class="profile-userbuttons">
-                          <button mat-flat-button color="primary">View Profile</button>
+                          <button *ngIf="customer?.id !== undefined" mat-flat-button color="primary" (click)="redirectToPage(customer?.id)">View Profile</button>
                         </div>
                       </div>
                     </div>

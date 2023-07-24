@@ -11,6 +11,7 @@ export class SubCasteService extends UnsubscribeOnDestroyAdapter {
   dataChange: BehaviorSubject<SubCaste[]> = new BehaviorSubject<SubCaste[]>(
     []
   );
+  public subcastes$: BehaviorSubject<SubCaste[]> = new BehaviorSubject<SubCaste[]>([]);
   // Temporarily stores data from dialogs
   dialogData!: SubCaste;
   constructor(private httpClient: HttpClient) {
@@ -85,5 +86,19 @@ export class SubCasteService extends UnsubscribeOnDestroyAdapter {
         },
       });
   }
+
+  public onCasteChangeSubCaste(e:any){
+    this.httpClient.get<SubCasteResponse>(environment.apiUrl+"/masters/subcastecastes/" + e.value)
+    .subscribe({
+              next : (data1) => {
+                this.subcastes$.next(data1.data);
+              },
+              error: (error: HttpErrorResponse) => {
+                console.log(error.name + ' ' + error.message);
+              },
+          });
+   }
+
+
 
 }
