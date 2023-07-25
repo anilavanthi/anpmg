@@ -1993,11 +1993,19 @@
                           
                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <label>Upload Profile Picture</label>
-                <input type="file" id="photo" name="photo" formControlName="photo" (change)="onFileSelected($event)"  accept="image/*">  
-                          </div>
+                <input type="file" id="photo" name="photo" formControlName="photo" (change)="onFileSelected($event)"  accept="image/*" required>  
+                <mat-error *ngIf="HFormGroup8.get('photo')?.invalid && (HFormGroup8.get('photo')?.dirty || HFormGroup8.get('photo')?.touched)">
+                  <span *ngIf="HFormGroup8.get('photo')?.errors?.['required']">Profile Picture is required.</span>
+                  <span *ngIf="HFormGroup8.get('photo')?.errors?.['accept']">Only image files are allowed.</span>
+                </mat-error>           
+              </div>
                          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                             <label>Upload ID Proof Document</label>
-                            <input type="file" id="idproof" name="idproof" formControlName="idproof" (change)="onFileSelected($event)"  accept="image/*">   
+                            <input type="file" id="idproof" name="idproof" formControlName="idproof" (change)="onFileSelected($event)"  accept="image/*" required>
+                            <mat-error *ngIf="HFormGroup8.get('idproof')?.invalid && (HFormGroup8.get('idproof')?.dirty || HFormGroup8.get('idproof')?.touched)">
+                              <span *ngIf="HFormGroup8.get('idproof')?.errors?.['required']">ID Proof Document is required.</span>
+                              <span *ngIf="HFormGroup8.get('idproof')?.errors?.['accept']">Only image files are allowed.</span>
+                            </mat-error>   
                           </div>
                         </div>
                         <div>

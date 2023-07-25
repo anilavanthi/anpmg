@@ -1,5 +1,5 @@
 import { Component,Input, OnInit,ChangeDetectionStrategy  } from '@angular/core';
-import { Customer,CustomerResponse,User,UserUpdate,SingleCustomerResponse } from '../createcustomer/customer.model';
+import { Customer,CustomerResponse,User,UserUpdate,SingleCustomerResponse,PostCustomerResponse } from '../createcustomer/customer.model';
 import { StateService } from '../../settings/state/state.service';
 import { DistrictService } from '../../settings/district/district.service';
 import { CountryService } from '../../settings/country/country.service';
@@ -38,6 +38,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
@@ -862,15 +863,51 @@ const valuesWidowedSons = widowedSonsArray.value;
   
      //console.log(this.customerNew); 
 
-    this.customerService.addCustomer(this.customerNew,this.photofile,this.idfile);
-     this.showNotification(
-       'snackbar-success',
-       'User Created Successfully...!!!',
-       'top',
-       'center'
-     );
+    // this.customerService.addCustomer(this.customerNew,this.photofile,this.idfile);
 
-   this.router.navigate(['admin/dashboard/main']);
+     // Assuming you have the necessary variables: this.customerNew, this.photofile, this.idfile
+     this.customerService.addCustomer(this.customerNew, this.photofile, this.idfile)
+     .subscribe(
+       (response: PostCustomerResponse) => {
+         // Handle the successful API response here
+        //  const responseData = response.data; // This will contain the response data from the API
+         const status = response.status_code; // This will contain the status code (e.g., 200, 201, etc.)
+         const message = response.message;
+         // You can now handle the remaining process based on the API response
+         if (status === 200) {
+           // Process completed successfully
+           // You can use the responseData as needed
+           this.showNotification(
+            'snackbar-success',
+            message,
+            'top',
+            'center'
+          );
+     
+        this.router.navigate(['admin/dashboard/main']);
+         } else {
+          this.showNotification(
+            'snackbar-danger',
+            message,
+            'top',
+            'center'
+          );
+          return;
+         }
+       },
+       (error: HttpErrorResponse) => {
+         // Handle errors here
+         console.log('Error:', error);
+         this.showNotification(
+          'snackbar-danger',
+          'The required field error: '+error,
+          'top',
+          'center'
+        );
+        return;
+       }
+     );
+     
 
   }
 }

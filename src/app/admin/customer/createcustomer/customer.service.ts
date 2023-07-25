@@ -49,7 +49,7 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  addCustomer(customer: Customer,photo:File,idFile:File): void {
+  addCustomer(customer: Customer,photo:File,idFile:File): Observable<any> {
     this.dialogData = customer;
     const formData: FormData = new FormData();
     const jsonCustomer = JSON.stringify(customer);
@@ -60,16 +60,17 @@ export class CustomerService extends UnsubscribeOnDestroyAdapter {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    this.httpClient.post(environment.apiUrl+"/masters/customerAdd/", formData,{headers})
-      .subscribe({
-        next: (data) => {
-         this.dialogData = customer;
-        //this.dialogData = formData.get('data');
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log(error);
-        },
-      });
+    // this.httpClient.post(environment.apiUrl+"/masters/customerAdd/", formData,{headers})
+    //   .subscribe({
+    //     next: (data) => {
+    //      this.dialogData = customer;
+    //     //this.dialogData = formData.get('data');
+    //     },
+    //     error: (error: HttpErrorResponse) => {
+    //       console.log(error);
+    //     },
+    //   });
+    return this.httpClient.post(environment.apiUrl + "/masters/customerAdd/", formData, { headers });
   }
 
   getCustomerData(id:number):Observable<SingleCustomerResponse> {

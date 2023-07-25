@@ -5,6 +5,13 @@ export class SingleCustomerResponse{
   msg! : string;
 }
 
+export class PostCustomerResponse{
+  data! : Customer;
+  message! : string;
+  status_code!: number;
+}
+
+
 export class CustomerResponse{
     data : Customer[]=[];
     msg! : string;
